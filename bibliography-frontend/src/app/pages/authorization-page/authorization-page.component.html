@@ -1,0 +1,38 @@
+<div class="tui-container tui-container_adaptive">
+  <div class="tui-row tui-row_align_center tui-row_adaptive content">
+    <div class="tui-col_6 tui-col-offset_3">
+      <tui-island class="island">
+        <form class="tui-form">
+          <h3 class="tui-form__header tui-island_text-align_center">
+            Авторизация
+          </h3>
+          <div class="tui-form__row">
+            <tui-input name="username" class="tui-space_bottom-3">
+              Логин
+              <input tuiTextfield type="text" />
+            </tui-input>
+          </div>
+          <div class="tui-form__row">
+            <tui-input-password name="password" tuiTextfieldSize="s">
+              Пароль
+              <input tuiTextfield />
+            </tui-input-password>
+          </div>
+          <div class="tui-form__buttons">
+            <button
+              tuiButton
+              type="submit"
+              class="tui-form__button"
+              class="login"
+            >
+              Войти
+            </button>
+          </div>
+
+          <p class="tui-island_text-align_center">Нет аккаунта? <a tuiLink [routerLink]="['/sign-up']" routerLinkActive="router-link-active" >Зарегистрироваться</a></p>
+
+        </form>
+      </tui-island>
+    </div>
+  </div>
+</div>

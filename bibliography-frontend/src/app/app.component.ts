@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemeService } from './core/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'Bibliography';
+  title = 'Учет книг';
+
+  constructor(public themeService:ThemeService) {}
 }
