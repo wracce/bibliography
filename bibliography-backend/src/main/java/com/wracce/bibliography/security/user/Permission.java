@@ -1,11 +1,11 @@
-package com.wracce.bibliography.user;
+package com.wracce.bibliography.security.user;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum Permission {
-
     ADMIN_READ("admin:read"),
     ADMIN_UPDATE("admin:update"),
     ADMIN_CREATE("admin:create"),

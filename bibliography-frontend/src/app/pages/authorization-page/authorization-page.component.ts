@@ -23,6 +23,6 @@ import { TuiInputModule, TuiInputPasswordModule, TuiIslandModule } from '@taiga-
     RouterLink
   ],
   templateUrl: './authorization-page.component.html',
-  styleUrls: ['./authorization-page.component.less'],
+  styleUrls: ['./authorization-page.component.scss'],
 })
 export class AuthorizationPageComponent {}

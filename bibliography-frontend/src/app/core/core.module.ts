@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header/header.component';
-import { TuiButtonModule, TuiModeModule, TuiSvgModule, TuiThemeNightModule } from '@taiga-ui/core';
-import { ThemeService } from './services/theme.service';
-
-
+import { HeaderComponent } from './layouts/header/header.component';
+import {
+  TuiButtonModule,
+  TuiLinkModule,
+  TuiModeModule,
+  TuiSvgModule,
+  TuiThemeNightModule,
+} from '@taiga-ui/core';
+import { ThemeService } from './theme/theme.service';
+import { ExampleNativeDateTransformerDirective } from './native-date-transformer/native-date-transformer.directive';
 
 @NgModule({
-  declarations: [
-    HeaderComponent
-  ],
+  declarations: [HeaderComponent, ExampleNativeDateTransformerDirective],
   imports: [
-    CommonModule,TuiSvgModule,TuiButtonModule, TuiThemeNightModule,TuiModeModule
-
+    CommonModule,
+    TuiSvgModule,
+    TuiButtonModule,
+    TuiThemeNightModule,
+    TuiModeModule,
+    TuiLinkModule
   ],
-  exports: [
-    HeaderComponent
-  ]
+  exports: [HeaderComponent, ExampleNativeDateTransformerDirective],
 })
-export class CoreModule { }
+export class CoreModule {}

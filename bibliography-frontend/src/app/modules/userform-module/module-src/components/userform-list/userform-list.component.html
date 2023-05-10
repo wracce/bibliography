@@ -1,0 +1,102 @@
+<table tuiTable class="table" [columns]="columns">
+  <thead class="">
+    <tr tuiThGroup>
+      <th tuiTh *tuiHead="'id'">№</th>
+      <th tuiTh *tuiHead="'firstName'">Фамилия</th>
+      <th tuiTh *tuiHead="'lastName'">Имя</th>
+      <th tuiTh *tuiHead="'middleName'">Отчество</th>
+      <th tuiTh *tuiHead="'birthday'">День рождения</th>
+      <th tuiTh *tuiHead="'address'">Адрес проживания</th>
+      <th tuiTh *tuiHead="'email'">Почта</th>
+      <th tuiTh *tuiHead="'registrationDate'">Дата регистрации</th>
+      <th tuiTh *tuiHead="'phoneNumber'">Номер телефона</th>
+      <th tuiTh *tuiHead="'actions'"></th>
+    </tr>
+  </thead>
+  <tbody tuiTbody [data]="data">
+    <tr *ngFor="let item of data; let i = index" tuiTr>
+      <td *tuiCell="'id'" tuiTd>{{ i + 1 }}</td>
+
+      <td *tuiCell="'firstName'" tuiTd>
+        <tui-text-area
+          class="textarea"
+          [expandable]="true"
+          [ngModel]="item.firstName"
+        ></tui-text-area>
+      </td>
+
+      <td *tuiCell="'lastName'" tuiTd>
+        <tui-text-area
+          class="textarea"
+          [expandable]="true"
+          [ngModel]="item.lastName"
+        ></tui-text-area>
+      </td>
+
+      <td *tuiCell="'middleName'" tuiTd>
+        <tui-text-area
+          class="textarea"
+          [expandable]="true"
+          [ngModel]="item.middleName"
+        ></tui-text-area>
+      </td>
+
+      <td *tuiCell="'birthday'" tuiTd>
+        <tui-input-date
+          toNativeDate
+          class="textarea"
+          [ngModel]="item.birthday"
+        ></tui-input-date>
+      </td>
+
+      <td *tuiCell="'address'" tuiTd>
+        <tui-text-area
+          class="textarea"
+          [expandable]="true"
+          [ngModel]="item.address"
+        ></tui-text-area>
+      </td>
+
+      <td *tuiCell="'email'" tuiTd>
+        <tui-text-area
+          class="textarea"
+          [expandable]="true"
+          [ngModel]="item.email"
+        ></tui-text-area>
+      </td>
+
+      <td *tuiCell="'registrationDate'" tuiTd>
+        <tui-input-date
+          toNativeDate
+          class="textarea"
+          [ngModel]="item.registrationDate"
+        ></tui-input-date>
+      </td>
+
+      <td *tuiCell="'phoneNumber'" tuiTd>
+        <tui-text-area
+          class="textarea"
+          [expandable]="true"
+          [ngModel]="item.phoneNumber"
+        ></tui-text-area>
+      </td>
+
+      <td *tuiCell="'actions'" tuiTd class="actions">
+        <button
+          tuiIconButton
+          icon="tuiIconCloseLarge"
+          appearance="icon"
+          shape="rounded"
+          size="s"
+        ></button>
+        <button
+          tuiIconButton
+          icon="tuiIconSave"
+          appearance="flat"
+          shape="rounded"
+          size="s"
+        ></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

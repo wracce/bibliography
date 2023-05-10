@@ -1,0 +1,38 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.scss";
+
+:host {
+  display: flex;
+  height: 100%;
+}
+
+.side {
+  padding: 1.5rem;
+  padding-right: 0;
+  min-width: 10rem;
+  width: 10rem;
+}
+
+.side__link {
+  margin-bottom: 2rem !important;
+}
+
+.side__btn {
+  margin-right: 2rem !important;
+  margin-top: 2rem;
+}
+
+.content {
+  width: 100%;
+  background-color: var(--tui-base-02);
+}
+
+.publishers-list-tab {
+  width: 100%;
+}
+
+.flat-button {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+}
+

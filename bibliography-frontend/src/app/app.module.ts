@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { TuiOverscrollModule } from '@taiga-ui/cdk';
+import { PublisherModule } from './modules/publisher-module/publisher.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { TuiOverscrollModule } from '@taiga-ui/cdk';
     TuiModeModule,
     TuiScrollbarModule,
     TuiOverscrollModule,
+    PublisherModule,
   ],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],

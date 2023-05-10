@@ -1,1 +1,100 @@
-<p>registration-page works!</p>
+<div class="tui-container tui-container_adaptive">
+  <div class="tui-row tui-row_align_center tui-row_adaptive">
+    <div class="tui-col_6 tui-col-offset_3">
+      <tui-island class="island tui-space_top-5">
+        <form class="tui-form">
+          <h4 class="tui-form__header tui-island_text-align_center">
+            Регистрация
+          </h4>
+
+          <div class="tui-form__row">
+            <tui-input name="lastName">
+              Фамилия
+              <input tuiTextfield type="text" />
+            </tui-input>
+          </div>
+
+          <div class="tui-form__row">
+            <tui-input name="firstName">
+              Имя
+              <input tuiTextfield type="text" />
+            </tui-input>
+          </div>
+
+          <div class="tui-form__row">
+            <tui-input name="middleName">
+              Отчество
+              <input tuiTextfield type="text" />
+            </tui-input>
+          </div>
+
+          <div class="tui-form__row">
+            <label tuiLabel="Пол">
+              <div
+                tuiGroup
+                class="tui-form__row"
+                [adaptive]="true"
+                [collapsed]="true"
+              >
+                <tui-radio-block
+                  contentAlign="right"
+                  name="sex"
+                  [item]="'fruit1'"
+                  [hideRadio]="true"
+                >
+                  Мужской
+                </tui-radio-block>
+                <tui-radio-block
+                  contentAlign="right"
+                  name="sex"
+                  [item]="'fruit2'"
+                  [hideRadio]="true"
+                >
+                  Женский
+                </tui-radio-block>
+              </div>
+            </label>
+          </div>
+
+          <div class="tui-form__row">
+            <tui-input-date formControlName="birthday">
+              День рождения
+            </tui-input-date>
+          </div>
+
+          <div class="tui-form__row">
+            <tui-input formControlName="address">
+              Место проживания
+              <input tuiTextfield type="text" />
+            </tui-input>
+          </div>
+
+          <div class="tui-form__row">
+            <tui-input-phone formControlName="phone">
+              Номер телефона
+              <input tuiTextfield autocomplete="tel" />
+            </tui-input-phone>
+          </div>
+
+          <div class="tui-form__row">
+            <tui-input formControlName="email">
+              Электронная почта
+              <input tuiTextfield type="email" />
+            </tui-input>
+          </div>
+
+          <div class="tui-form__buttons">
+            <button
+              tuiButton
+              type="submit"
+              class="tui-form__button"
+              class="register"
+            >
+              Зарегистрироваться
+            </button>
+          </div>
+        </form>
+      </tui-island>
+    </div>
+  </div>
+</div>

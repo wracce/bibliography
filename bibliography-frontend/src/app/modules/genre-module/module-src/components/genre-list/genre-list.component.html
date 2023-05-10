@@ -1,0 +1,48 @@
+<table tuiTable class="table" [columns]="columns">
+  <thead class="">
+    <tr tuiThGroup>
+      <th tuiTh *tuiHead="'id'">№</th>
+      <th tuiTh *tuiHead="'name'">Название</th>
+      <th tuiTh *tuiHead="'desc'">Описание</th>
+      <th tuiTh *tuiHead="'actions'" [sorter]="null"></th>
+    </tr>
+  </thead>
+  <tbody tuiTbody [data]="data">
+    <tr *ngFor="let item of data; let i = index" tuiTr>
+      <td *tuiCell="'id'" tuiTd>{{ i + 1 }}</td>
+
+      <td *tuiCell="'name'" tuiTd>
+        <tui-text-area
+          class="textarea"
+          [expandable]="true"
+          [ngModel]="item.name"
+        ></tui-text-area>
+      </td>
+
+      <td *tuiCell="'desc'" tuiTd>
+        <tui-text-area
+          class="textarea"
+          [expandable]="true"
+          [ngModel]="item.desc"
+        ></tui-text-area>
+      </td>
+
+      <td *tuiCell="'actions'" tuiTd class="actions">
+        <button
+          tuiIconButton
+          icon="tuiIconCloseLarge"
+          appearance="icon"
+          shape="rounded"
+          size="s"
+        ></button>
+        <button
+          tuiIconButton
+          icon="tuiIconSave"
+          appearance="flat"
+          shape="rounded"
+          size="s"
+        ></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

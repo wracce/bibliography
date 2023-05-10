@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './account-page.component.html',
-  styleUrls: ['./account-page.component.less']
+  styleUrls: ['./account-page.component.scss']
 })
 export class AccountPageComponent {
 

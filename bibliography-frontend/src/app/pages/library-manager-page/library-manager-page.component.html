@@ -1,0 +1,71 @@
+<nav tuiTabs vertical="left" class="side" [(activeItemIndex)]="activeTabIndex">
+  <button tuiTab class="side__link">Редактирование списка книг</button>
+  <button tuiTab class="side__link">Редактирование списка издательств</button>
+  <button tuiTab class="side__link">Редактирование списка авторов</button>
+  <button tuiTab class="side__link">Редактирование списка жанров</button>
+  <button tuiTab class="side__link">Редактирование формуляров</button>
+  <div class="space" style="flex: 1 1 auto"></div>
+  <button tuiButton appearance="accent" class="side__btn" (click)="open = true">
+    Выдать книгу
+  </button>
+  <button
+    tuiButton
+    appearance="accent"
+    class="side__btn"
+    (click)="open1 = true"
+  >
+    Забрать книгу
+  </button>
+</nav>
+
+<tui-scrollbar class="content">
+  <div class="publishers-list-tab" *ngIf="activeTabIndex == 0">
+    <app-book-list></app-book-list>
+    <!-- <button tuiIconButton icon="tuiIconFilePlusLarge" class="flat-button"></button> -->
+  </div>
+  <div class="publishers-list-tab" *ngIf="activeTabIndex == 1">
+    <app-publisher-list></app-publisher-list>
+    <!-- <button tuiIconButton icon="tuiIconFilePlusLarge" class="flat-button"></button> -->
+  </div>
+
+  <div class="publishers-list-tab" *ngIf="activeTabIndex == 2">
+    <app-author-list></app-author-list>
+    <!-- <button tuiIconButton icon="tuiIconFilePlusLarge" class="flat-button"></button> -->
+  </div>
+
+  <app-genre-tab *ngIf="activeTabIndex == 3"> </app-genre-tab>
+
+  <div class="publishers-list-tab" *ngIf="activeTabIndex == 4">
+    <app-userform-search></app-userform-search>
+    <app-userform-list></app-userform-list>
+    <!-- <button tuiIconButton icon="tuiIconFilePlusLarge" class="flat-button"></button> -->
+  </div>
+</tui-scrollbar>
+
+<ng-template
+  let-observer
+  [tuiDialogOptions]="{
+    label: open ? 'Выдать книгу пользователю' : 'Забрать книгу у пользователя ',
+    size: 's'
+  }"
+  [(tuiDialog)]="open || open1"
+>
+  <form>
+    <p>
+      <tui-input tuiAutoFocus formControlName="exampleControl">
+        № Формуляра
+      </tui-input>
+    </p>
+    <p>
+      <tui-input tuiAutoFocus formControlName="exampleControl">
+        № Книги
+      </tui-input>
+    </p>
+
+    <p>
+      <button tuiButton type="submit">
+        {{ open ? "Выдать книгу" : "Забрать книгу" }}
+      </button>
+    </p>
+  </form>
+</ng-template>

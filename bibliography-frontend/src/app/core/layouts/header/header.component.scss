@@ -1,11 +1,13 @@
-@import "@taiga-ui/core/styles/taiga-ui-local.less";
+@import '@taiga-ui/core/styles/taiga-ui-local.scss';
 
 :host {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 1.25rem;
   background: var(--tui-base-01);
   border-bottom: 1px solid var(--tui-base-03);
 
-  .shadow(1);
+  @include shadow(1);
+
 }
