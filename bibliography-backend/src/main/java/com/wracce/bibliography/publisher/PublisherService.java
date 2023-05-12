@@ -1,4 +1,4 @@
-package com.wracce.bibliography.genre;
+package com.wracce.bibliography.publisher;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,22 +7,22 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class GenreService {
-    private final GenreRepository genreRepository;
+public class PublisherService {
+    private final PublisherRepository publisherRepository;
 
-    public List<Genre> findAll() {
-        return genreRepository.findAll();
+    public List<Publisher> findAll() {
+        return publisherRepository.findAll();
     }
 
-    public Genre create(Genre genre) {
-        return genreRepository.save(genre);
+    public Publisher create(Publisher publisher) {
+        return publisherRepository.save(publisher);
     }
 
-    public Genre update(Genre genre) {
-        return genreRepository.save(genre);
+    public Publisher update(Publisher publisher) {
+        return publisherRepository.save(publisher);
     }
 
     public void delete(Long id) {
-        genreRepository.deleteById(id);
+        publisherRepository.deleteById(id);
     }
 }

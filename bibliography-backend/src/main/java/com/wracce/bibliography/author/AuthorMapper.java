@@ -1,19 +1,20 @@
-package com.wracce.bibliography.publisher;
+package com.wracce.bibliography.author;
 
+import com.wracce.bibliography.author.Author;
 import org.mapstruct.*;
 
 import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface PublisherMapper {
-    Publisher toEntity(PublisherDto publisherDto);
+public interface AuthorMapper {
+    Author toEntity(AuthorDto authorDto);
 
-    PublisherDto toDto(Publisher publisher);
+    AuthorDto toDto(Author author);
 
-    List<Publisher> toEntity(List<PublisherDto> publisherDto);
+    List<Author> toEntity(List<AuthorDto> authorDto);
 
-    List<PublisherDto> toDto(List<Publisher> publisher);
+    List<AuthorDto> toDto(List<Author> author);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Publisher partialUpdate(PublisherDto publisherDto, @MappingTarget Publisher publisher);
+    Author partialUpdate(AuthorDto authorDto, @MappingTarget Author author);
 }

@@ -1,7 +1,6 @@
-package com.wracce.bibliography.author;
+package com.wracce.bibliography.userform;
 
-import com.wracce.bibliography.author.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AuthorRepository extends JpaRepository<Author, Long> {
+public interface UserFormRepository extends JpaRepository<UserForm, Long> {
 }

@@ -1,20 +1,24 @@
-package com.wracce.bibliography.author;
+package com.wracce.bibliography.userform;
 
-import com.wracce.bibliography.author.Author;
+import com.wracce.bibliography.userform.UserForm;
 import org.mapstruct.*;
 
 import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface AuthorMapper {
-    Author toEntity(AuthorDto authorDto);
+public interface UserFormMapper {
+    @Mapping(source = "userLogin", target = "user.login")
+    @Mapping(source = "userId", target = "user.id")
+    UserForm toEntity(UserFormDto userFormDto);
 
-    AuthorDto toDto(Author author);
+    @Mapping(source = "user.login", target = "userLogin")
+    @Mapping(source = "user.id", target = "userId")
+    UserFormDto toDto(UserForm userForm);
 
-    List<Author> toEntity(List<AuthorDto> authorDto);
+    List<UserForm> toEntity(List<UserFormDto> userFormDto);
 
-    List<AuthorDto> toDto(List<Author> author);
+    List<UserFormDto> toDto(List<UserForm> userForm);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Author partialUpdate(AuthorDto authorDto, @MappingTarget Author author);
+    UserForm partialUpdate(UserFormDto userFormDto, @MappingTarget UserForm userForm);
 }

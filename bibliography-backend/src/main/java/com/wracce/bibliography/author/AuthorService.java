@@ -1,5 +1,6 @@
-package com.wracce.bibliography.publisher;
+package com.wracce.bibliography.author;
 
+import com.wracce.bibliography.author.Author;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -7,22 +8,22 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class PublisherService {
-    private final PublisherRepository publisherRepository;
+public class AuthorService {
+    private final AuthorRepository authorRepository;
 
-    public List<Publisher> findAll() {
-        return publisherRepository.findAll();
+    public List<Author> findAll() {
+        return authorRepository.findAll();
     }
 
-    public Publisher create(Publisher publisher) {
-        return publisherRepository.save(publisher);
+    public Author create(Author author) {
+        return authorRepository.save(author);
     }
 
-    public Publisher update(Publisher publisher) {
-        return publisherRepository.save(publisher);
+    public Author update(Author author) {
+        return authorRepository.save(author);
     }
 
     public void delete(Long id) {
-        publisherRepository.deleteById(id);
+        authorRepository.deleteById(id);
     }
 }

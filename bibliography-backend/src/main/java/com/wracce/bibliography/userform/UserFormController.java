@@ -1,4 +1,4 @@
-package com.wracce.bibliography.author;
+package com.wracce.bibliography.userform;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -7,29 +7,29 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/author")
-public class AuthorController {
-    private final AuthorService authorService;
-    private final AuthorMapper mapper;
+@RequestMapping("/api/v1/userform")
+public class UserFormController {
+    private final UserFormService userFormService;
+    private final UserFormMapper mapper;
 
     @GetMapping
-    public List<AuthorDto> getAll() {
-        return mapper.toDto(authorService.findAll());
-//        return authorService.findAll().stream().map(authorMapper::toDto).collect(Collectors.toList());
+    public List<UserFormDto> getAll() {
+        return mapper.toDto(userFormService.findAll());
+//        return userFormService.findAll().stream().map(userFormMapper::toDto).collect(Collectors.toList());
     }
 
     @PostMapping
-    public AuthorDto create(@RequestBody AuthorDto authorDto) {
-        return mapper.toDto(authorService.create(mapper.toEntity(authorDto)));
+    public UserFormDto create(@RequestBody UserFormDto userFormDto) {
+        return mapper.toDto(userFormService.create(mapper.toEntity(userFormDto)));
     }
 
     @PutMapping
-    public AuthorDto update(@RequestBody AuthorDto authorDto) {
-        return mapper.toDto(authorService.update(mapper.toEntity(authorDto)));}
+    public UserFormDto update(@RequestBody UserFormDto userFormDto) {
+        return mapper.toDto(userFormService.update(mapper.toEntity(userFormDto)));}
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        authorService.delete(id);
+        userFormService.delete(id);
     }
 
 }

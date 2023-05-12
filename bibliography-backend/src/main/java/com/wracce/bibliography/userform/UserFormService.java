@@ -1,29 +1,37 @@
-package com.wracce.bibliography.author;
+package com.wracce.bibliography.userform;
 
-import com.wracce.bibliography.author.Author;
+import com.wracce.bibliography.security.user.User;
+import com.wracce.bibliography.security.user.UserRepository;
+import com.wracce.bibliography.userform.UserForm;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class AuthorService {
-    private final AuthorRepository authorRepository;
+public class UserFormService {
+    private final UserFormRepository userFormRepository;
+    private final UserRepository userRepository;
 
-    public List<Author> findAll() {
-        return authorRepository.findAll();
+
+    public List<UserForm> findAll() {
+        return userFormRepository.findAll();
     }
 
-    public Author create(Author author) {
-        return authorRepository.save(author);
+    public UserForm create(UserForm userForm) {
+        return userFormRepository.save(userForm);
     }
 
-    public Author update(Author author) {
-        return authorRepository.save(author);
+    @Transactional
+    public UserForm update(UserForm userForm) {
+//        userRepository.save(userForm.getUser());
+        return userFormRepository.save(userForm);
     }
 
     public void delete(Long id) {
-        authorRepository.deleteById(id);
+        userFormRepository.deleteById(id);
     }
 }

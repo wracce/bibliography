@@ -1,37 +1,37 @@
-package com.wracce.bibliography.genre;
+package com.wracce.bibliography.publisher;
 
+import com.wracce.bibliography.publisher.PublisherDto;
+import com.wracce.bibliography.publisher.PublisherMapper;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/genre")
-public class GenreController {
-    private final GenreService genreService;
-    private final GenreMapper mapper;
+@RequestMapping("/api/v1/publisher")
+public class PublisherController {
+    private final PublisherService publisherService;
+    private final PublisherMapper mapper;
 
     @GetMapping
-    public List<GenreDto> getAll() {
-        return mapper.toDto(genreService.findAll());
-//        return genreService.findAll().stream().map(genreMapper::toDto).collect(Collectors.toList());
+    public List<PublisherDto> getAll() {
+        return mapper.toDto(publisherService.findAll());
+//        return publisherService.findAll().stream().map(publisherMapper::toDto).collect(Collectors.toList());
     }
 
     @PostMapping
-    public GenreDto create(@RequestBody GenreDto genreDto) {
-        return mapper.toDto(genreService.create(mapper.toEntity(genreDto)));
+    public PublisherDto create(@RequestBody PublisherDto publisherDto) {
+        return mapper.toDto(publisherService.create(mapper.toEntity(publisherDto)));
     }
 
     @PutMapping
-    public GenreDto update(@RequestBody GenreDto genreDto) {
-        return mapper.toDto(genreService.update(mapper.toEntity(genreDto)));}
+    public PublisherDto update(@RequestBody PublisherDto publisherDto) {
+        return mapper.toDto(publisherService.update(mapper.toEntity(publisherDto)));}
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        genreService.delete(id);
+        publisherService.delete(id);
     }
 
 }

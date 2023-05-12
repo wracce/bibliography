@@ -1,5 +1,10 @@
 package com.wracce.bibliography.userform;
 
-public enum SexType {
-    MALE("")
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public enum GenderType {
+    MALE,
+    FEMALE;
+    
 }

@@ -1,7 +1,5 @@
-package com.wracce.bibliography.publisher;
+package com.wracce.bibliography.author;
 
-import com.wracce.bibliography.publisher.PublisherDto;
-import com.wracce.bibliography.publisher.PublisherMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,29 +7,29 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/publisher")
-public class PublisherController {
-    private final PublisherService publisherService;
-    private final PublisherMapper mapper;
+@RequestMapping("/api/v1/author")
+public class AuthorController {
+    private final AuthorService authorService;
+    private final AuthorMapper mapper;
 
     @GetMapping
-    public List<PublisherDto> getAll() {
-        return mapper.toDto(publisherService.findAll());
-//        return publisherService.findAll().stream().map(publisherMapper::toDto).collect(Collectors.toList());
+    public List<AuthorDto> getAll() {
+        return mapper.toDto(authorService.findAll());
+//        return authorService.findAll().stream().map(authorMapper::toDto).collect(Collectors.toList());
     }
 
     @PostMapping
-    public PublisherDto create(@RequestBody PublisherDto publisherDto) {
-        return mapper.toDto(publisherService.create(mapper.toEntity(publisherDto)));
+    public AuthorDto create(@RequestBody AuthorDto authorDto) {
+        return mapper.toDto(authorService.create(mapper.toEntity(authorDto)));
     }
 
     @PutMapping
-    public PublisherDto update(@RequestBody PublisherDto publisherDto) {
-        return mapper.toDto(publisherService.update(mapper.toEntity(publisherDto)));}
+    public AuthorDto update(@RequestBody AuthorDto authorDto) {
+        return mapper.toDto(authorService.update(mapper.toEntity(authorDto)));}
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        publisherService.delete(id);
+        authorService.delete(id);
     }
 
 }

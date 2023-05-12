@@ -1,6 +1,7 @@
-package com.wracce.bibliography.publisher;
+package com.wracce.bibliography.author;
 
+import com.wracce.bibliography.author.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PublisherRepository extends JpaRepository<Publisher, Long> {
+public interface AuthorRepository extends JpaRepository<Author, Long> {
 }

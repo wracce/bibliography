@@ -1,26 +1,32 @@
-package com.wracce.bibliography.retrurnjournal;
+package com.wracce.bibliography.bookreturning;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.wracce.bibliography.booklending.BookLending;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table
-public class ReturnJournal {
+@Table(schema = "public")
+public class BookReturning {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne(mappedBy = "bookReturning", fetch = FetchType.LAZY)
     private BookLending bookLending;
 
     private LocalDate returnDate;
 
-    private BigDecimal fineAmount;
+    private Double fineAmount;
 
-    public ReturnJournal() {
-    }
 
-    // Геттеры и сеттеры
 }

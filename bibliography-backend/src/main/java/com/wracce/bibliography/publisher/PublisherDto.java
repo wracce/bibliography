@@ -1,7 +1,17 @@
 package com.wracce.bibliography.publisher;
 
+import lombok.Data;
+
+import java.io.Serializable;
+
 /**
- * A DTO for the {@link com.wracce.bibliography.publisher.Publisher} entity
+ * A DTO for the {@link Publisher} entity
  */
-public class PublisherDto {
+@Data
+public class PublisherDto implements Serializable {
+    private final Long id;
+    private final String name;
+    private final String address;
+    private final String phoneNumber;
+    private final String email;
 }

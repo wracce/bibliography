@@ -1,7 +1,7 @@
 package com.wracce.bibliography.book;
 
-import com.wracce.bibliography.author.Author;
-import com.wracce.bibliography.author.AuthorRepository;
+import com.wracce.bibliography.book.Book;
+import com.wracce.bibliography.book.BookRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,22 +9,22 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class AuthorService {
-    private final AuthorRepository authorRepository;
+public class BookService {
+    private final BookRepository bookRepository;
 
-    public List<Author> findAll() {
-        return authorRepository.findAll();
+    public List<Book> findAll() {
+        return bookRepository.findAll();
     }
 
-    public Author create(Author author) {
-        return authorRepository.save(author);
+    public Book create(Book book) {
+        return bookRepository.save(book);
     }
 
-    public Author update(Author author) {
-        return authorRepository.save(author);
+    public Book update(Book book) {
+        return bookRepository.save(book);
     }
 
     public void delete(Long id) {
-        authorRepository.deleteById(id);
+        bookRepository.deleteById(id);
     }
 }
