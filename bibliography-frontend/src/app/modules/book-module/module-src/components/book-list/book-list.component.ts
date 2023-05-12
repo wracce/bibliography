@@ -1,41 +1,72 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BookService } from '../../services/book.service';
+import { GenderType } from 'src/app/core/models/gender-type';
+import {
+  TuiContextWithImplicit,
+  TuiStringHandler,
+  tuiPure,
+} from '@taiga-ui/cdk';
 import { Book } from '../../models/book';
+import { Publisher } from 'src/app/modules/publisher-module/module-src/models/publisher';
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
 })
-export class BookListComponent {
-  readonly data: Book[] = [
-    // {
-    //   id: 0,
-    //   name: 'капитанская дочка',
-    //   edition: 5,
-    //   editionYear: 2017,
-    //   author: { firstName: 'пушкин А. С.' },
-    //   publisher: { name: 'АСТ' },
-    //   genre: { name: 'Роман' },
-    //   isbn: '978-5-17-092807-1',
-    //   desc: 'Центральное место в сборнике «Капитанская дочка» занимает цикл «Повести покойного Ивана Петровича Белкина», действие которого происходит в провинции. В «Метели» и «Барышне-крестьянке» в основу положены любовные сюжеты шуточного венчания и трагических отношений молодых людей из враждующих семей. В «Выстреле» рассказывается шестилетняя история одной дуэли. В готическом «Гробовщике» к Адриану Прохорову после его неловкого высказывания приходят пировать погребенные им люди. А в «Станционном смотрителе» дочь первого в русской литературе «маленького человека» Самсона Вырина однажды похищает проезжий гусар... Также в издание входят три романа — «Дубровский», «Арап Петра Великого» и «Капитанская дочка». Первый повествует о дворянском сыне, который жаждет отомстить алчному помещику Кириле Троекурову. Фоном же для двух других произведений становятся важные исторические события. В первом рассказывается об эпохе знаменитых преобразований Петра Великого, в которых участвует верный ему арап Абрам Ганнибал, предок Пушкина. А второй представляет собой историю пугачевского бунта, которую вспоминает помещик Петр Гринев, однажды спасший Емельяна Пугачева от гибели',
-    //   instanceCount: 4,
-    //   issuedCount: 1,
-    // },
-    {},
-  ];
+export class BookListComponent implements OnInit {
+
+  private changedItems = new Set<Book>();
 
   readonly columns = [
     'id',
+    'description',
     'name',
     'edition',
     'editionYear',
-    'author',
-    'publisher',
-    'genre',
-    'isbn',
-    'desc',
+    'ISBN',
+    'pageCount',
     'instanceCount',
     'issuedCount',
+    'publisher',
+    'authors',
+    'genres',
     'actions',
   ];
+
+  publishers = this.bookService.publishers;
+
+  get data(): Book[] {
+    return this.bookService.list;
+  }
+
+  isChangeItem(book: Book) {
+    return this.changedItems.has(book);
+  }
+
+  onValueChange(book: Book) {
+    this.changedItems.add(book);
+  }
+
+  constructor(public bookService: BookService) {
+
+  }
+
+  ngOnInit(): void {
+    this.bookService.receiveData();
+  }
+
+  save(item: Book) {
+    if (item.id === undefined) this.bookService.add(item);
+    else this.bookService.update(item);
+    this.changedItems.delete(item);
+  }
+
+  delete(item: Book) {
+    if (item.id !== undefined) this.bookService.delete(item.id);
+  }
+
+  // getPublisherName(publisher: Publisher|undefined) {
+  //   return this.publishers.find(e=>publisher?.toString() == e.publisher.toString())?.name || "";
+  // }
 }

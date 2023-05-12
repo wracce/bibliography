@@ -1,0 +1,9 @@
+{
+  "/api/v1/auth/authenticate": {
+    "target": "http://localhost:8080",
+    "changeOrigin": false,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": { "^/api/v1/auth/authenticate": "" }
+  }
+}

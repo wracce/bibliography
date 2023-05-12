@@ -1,33 +1,74 @@
-import { Component } from '@angular/core';
-import { Userform } from '../../models/userform';
-import { UserformService } from '../../services/userform.service';
+import { Component, OnInit } from '@angular/core';
+import { UserFormService } from '../../services/userform.service';
+import { UserForm } from 'src/app/core/models/user-form';
+import { GenderType } from 'src/app/core/models/gender-type';
+import {
+  TuiContextWithImplicit,
+  TuiStringHandler,
+  tuiPure,
+} from '@taiga-ui/cdk';
 
 @Component({
-  selector: 'app-userform-list',
-  templateUrl: './userform-list.component.html',
-  styleUrls: ['./userform-list.component.scss']
+  selector: 'app-userForm-list',
+  templateUrl: './userForm-list.component.html',
+  styleUrls: ['./userForm-list.component.scss'],
 })
-export class UserformListComponent {
+export class UserFormListComponent implements OnInit {
 
-  constructor(public userformService:UserformService) {}
+  private changedItems = new Set<UserForm>();
 
+  readonly columns = [
+    'id',
+    'userLogin',
+    'firstName',
+    'lastName',
+    'middleName',
+    'birthday',
+    'address',
+    'phoneNumber',
+    'email',
+    'registrationDate',
+    'debt',
+    'genderType',
+    'actions',
+  ];
 
-  readonly data:Userform[] = [
-    {
-     id:0,
-     firstName: "Алексей",
-     lastName: "Точечка",
-     middleName: "Романов",
-     birthday: new Date(2000,1,2),
-     address: "г. Самара, ул. Большая садовая, д.4, кв.1",
-     email: "altochka1@gmail.com",
-     registrationDate: new Date(2012,4,1),
-     phoneNumber: "+7 (937) 836-8-532"
+  genders: { name: string; value: GenderType }[] = [
+    { name: 'Мужской', value: GenderType.MALE },
+    { name: 'Женский', value: GenderType.FEMALE },
+  ];
 
-   },
-   {}
-];
+  get data(): UserForm[] {
+    return this.userFormService.list;
+  }
 
-readonly columns = ['id', 'firstName', 'lastName', 'middleName','birthday','address', 'email','registrationDate','phoneNumber','actions'];
+  isChangeItem(userForm: UserForm) {
+    return this.changedItems.has(userForm);
+  }
 
+  onValueChange(userForm: UserForm) {
+    this.changedItems.add(userForm);
+  }
+
+  constructor(public userFormService: UserFormService) {
+
+  }
+
+  ngOnInit(): void {
+    this.userFormService.receiveData();
+  }
+
+  save(item: UserForm) {
+    if (item.id === undefined) this.userFormService.add(item);
+    else this.userFormService.update(item);
+    this.changedItems.delete(item);
+  }
+
+  delete(item: UserForm) {
+    if (item.id !== undefined) this.userFormService.delete(item.id);
+  }
+
+  getGenderName(gender: GenderType|undefined) {
+    return this.genders.find(e=>gender?.toString() == e.value.toString())?.name || "";
+  }
 }

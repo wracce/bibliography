@@ -1,102 +1,191 @@
-<table tuiTable class="table" [columns]="columns">
-  <thead class="">
-    <tr tuiThGroup>
-      <th tuiTh *tuiHead="'id'">№</th>
-      <th tuiTh *tuiHead="'firstName'">Фамилия</th>
-      <th tuiTh *tuiHead="'lastName'">Имя</th>
-      <th tuiTh *tuiHead="'middleName'">Отчество</th>
-      <th tuiTh *tuiHead="'birthday'">День рождения</th>
-      <th tuiTh *tuiHead="'address'">Адрес проживания</th>
-      <th tuiTh *tuiHead="'email'">Почта</th>
-      <th tuiTh *tuiHead="'registrationDate'">Дата регистрации</th>
-      <th tuiTh *tuiHead="'phoneNumber'">Номер телефона</th>
-      <th tuiTh *tuiHead="'actions'"></th>
-    </tr>
-  </thead>
-  <tbody tuiTbody [data]="data">
-    <tr *ngFor="let item of data; let i = index" tuiTr>
-      <td *tuiCell="'id'" tuiTd>{{ i + 1 }}</td>
+<tui-scrollbar waIntersectionRoot class="content" [hidden]="true">
+  <table tuiTable class="table" [columns]="columns">
+    <thead tuiThead>
+      <tr tuiThGroup>
+        <th tuiTh *tuiHead="'id'">№</th>
+        <th tuiTh *tuiHead="'userLogin'" [sticky]="true">Логин</th>
+        <th tuiTh *tuiHead="'firstName'">Имя</th>
+        <th tuiTh *tuiHead="'lastName'">Фамилия</th>
+        <th tuiTh *tuiHead="'middleName'">Отчество</th>
+        <th tuiTh *tuiHead="'birthday'">День рождения</th>
+        <th tuiTh *tuiHead="'address'">Адрес</th>
+        <th tuiTh *tuiHead="'phoneNumber'">телефон</th>
+        <th tuiTh *tuiHead="'email'">Почта</th>
+        <th tuiTh *tuiHead="'registrationDate'">Дата регистрации</th>
+        <th tuiTh *tuiHead="'debt'">Долг</th>
+        <th tuiTh *tuiHead="'genderType'">Пол</th>
+        <th tuiTh *tuiHead="'actions'" [sorter]="null"></th>
+      </tr>
+    </thead>
+    <tbody tuiTbody [data]="data">
+      <tr
+        *ngFor="
+          let element of data | search : userFormService.search;
+          let i = index
+        "
+        tuiTr
+        [class.tr_changed]="isChangeItem(element)"
+      >
+        <td *tuiCell="'id'" tuiTd>{{ i + 1 }}</td>
 
-      <td *tuiCell="'firstName'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.firstName"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'userLogin'" tuiTd>
+          <tui-text-area
+            class="textarea"
+            [expandable]="true"
+            [(ngModel)]="element.userLogin"
+            (ngModelChange)="onValueChange(element)"
+          ></tui-text-area>
+        </td>
 
-      <td *tuiCell="'lastName'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.lastName"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'firstName'" tuiTd>
+          <tui-text-area
+            class="textarea"
+            [expandable]="true"
+            [(ngModel)]="element.firstName"
+            (ngModelChange)="onValueChange(element)"
+          ></tui-text-area>
+        </td>
+        <td *tuiCell="'lastName'" tuiTd>
+          <tui-text-area
+            class="textarea"
+            [expandable]="true"
+            [(ngModel)]="element.lastName"
+            (ngModelChange)="onValueChange(element)"
+          ></tui-text-area>
+        </td>
 
-      <td *tuiCell="'middleName'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.middleName"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'middleName'" tuiTd>
+          <tui-text-area
+            class="textarea"
+            [expandable]="true"
+            [(ngModel)]="element.middleName"
+            (ngModelChange)="onValueChange(element)"
+          ></tui-text-area>
+        </td>
 
-      <td *tuiCell="'birthday'" tuiTd>
-        <tui-input-date
-          toNativeDate
-          class="textarea"
-          [ngModel]="item.birthday"
-        ></tui-input-date>
-      </td>
+        <td *tuiCell="'birthday'" tuiTd>
+          <tui-input-date
+            toNativeDate
+            class="textarea"
+            [(ngModel)]="element.birthday"
+            (ngModelChange)="onValueChange(element)"
+          ></tui-input-date>
+        </td>
 
-      <td *tuiCell="'address'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.address"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'address'" tuiTd>
+          <tui-text-area
+            class="textarea"
+            [expandable]="true"
+            [(ngModel)]="element.address"
+            (ngModelChange)="onValueChange(element)"
+          ></tui-text-area>
+        </td>
 
-      <td *tuiCell="'email'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.email"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'phoneNumber'" tuiTd>
+          <tui-input-phone
+            class="textarea"
+            [(ngModel)]="element.phoneNumber"
+            (ngModelChange)="onValueChange(element)"
+          >
+            <input tuiTextfield autocomplete="tel"
+          /></tui-input-phone>
+        </td>
 
-      <td *tuiCell="'registrationDate'" tuiTd>
-        <tui-input-date
-          toNativeDate
-          class="textarea"
-          [ngModel]="item.registrationDate"
-        ></tui-input-date>
-      </td>
+        <td *tuiCell="'email'" tuiTd>
+          <tui-input
+            class="textarea"
+            [(ngModel)]="element.email"
+            (ngModelChange)="onValueChange(element)"
+          >
+            <input tuiTextfield type="email"
+          /></tui-input>
+        </td>
 
-      <td *tuiCell="'phoneNumber'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.phoneNumber"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'registrationDate'" tuiTd>
+          <tui-input-date
+            disabled
+            toNativeDate
+            class="textarea"
+            [(ngModel)]="element.registrationDate"
+            (ngModelChange)="onValueChange(element)"
+          ></tui-input-date>
+        </td>
 
-      <td *tuiCell="'actions'" tuiTd class="actions">
-        <button
-          tuiIconButton
-          icon="tuiIconCloseLarge"
-          appearance="icon"
-          shape="rounded"
-          size="s"
-        ></button>
-        <button
-          tuiIconButton
-          icon="tuiIconSave"
-          appearance="flat"
-          shape="rounded"
-          size="s"
-        ></button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <td *tuiCell="'phoneNumber'" tuiTd>
+          <tui-input-phone
+            [(ngModel)]="element.phoneNumber"
+            (ngModelChange)="onValueChange(element)"
+            class="textarea"
+          >
+            <input tuiTextfield autocomplete="tel" />
+          </tui-input-phone>
+        </td>
+
+        <td *tuiCell="'debt'" tuiTd>
+          <tui-input-number
+            [(ngModel)]="element.debt"
+            (ngModelChange)="onValueChange(element)"
+            class="textarea"
+            [tuiTextfieldPostfix]="'RUB' | tuiCurrency"
+          ></tui-input-number>
+        </td>
+
+        <td *tuiCell="'genderType'" tuiTd class="select">
+          <tui-select
+            [(ngModel)]="element.genderType"
+            (ngModelChange)="onValueChange(element)"
+            class="textarea"
+            [valueContent]="getGenderName(element.genderType)"
+            class="select"
+          >
+            <ng-template tuiDataList>
+              <tui-data-list>
+                <button
+                  *ngFor="let gender of genders"
+                  tuiOption
+                  [value]="gender.value"
+                >
+                  {{ gender.name }}
+                </button>
+                <!-- <button
+                  tuiOption
+                  [value]="GenderType.MALE"
+                >
+                  Мужчина
+                </button>
+                <button
+                  tuiOption
+                  [value]="GenderType.FEMALE"
+                >
+                  Жещина
+                </button> -->
+              </tui-data-list>
+            </ng-template>
+          </tui-select>
+        </td>
+
+        <td *tuiCell="'actions'" tuiTd class="actions">
+          <button
+            tuiIconButton
+            icon="tuiIconCloseLarge"
+            appearance="icon"
+            shape="rounded"
+            size="s"
+            class="action-btn"
+            [style.visibility]="element.id !== undefined ? 'visible' : 'hidden'"
+            (click)="delete(element)"
+          ></button>
+          <button
+            tuiIconButton
+            icon="tuiIconSave"
+            appearance="flat"
+            shape="rounded"
+            size="s"
+            class="action-btn"
+            (click)="save(element)"
+          ></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</tui-scrollbar>

@@ -4,22 +4,28 @@
       <th tuiTh *tuiHead="'id'">№</th>
       <th tuiTh *tuiHead="'name'">Название</th>
       <th tuiTh *tuiHead="'address'">Адрес</th>
+      <th tuiTh *tuiHead="'phoneNumber'">Номер телефона</th>
       <th tuiTh *tuiHead="'email'">Почта</th>
-      <th tuiTh *tuiHead="'phoneNumber'">Телефон</th>
-      <th tuiTh *tuiHead="'actions'"></th>
+      <th tuiTh *tuiHead="'actions'" [sorter]="null"></th>
     </tr>
   </thead>
   <tbody tuiTbody [data]="data">
-    <tr *ngFor="let item of data; let i = index" tuiTr>
-
+    <tr
+      *ngFor="
+        let item of data | search : publisherService.search;
+        let i = index
+      "
+      tuiTr
+      [class.tr_changed]="isChangeItem(item)"
+    >
       <td *tuiCell="'id'" tuiTd>{{ i + 1 }}</td>
 
       <td *tuiCell="'name'" tuiTd>
         <tui-text-area
           class="textarea"
           [expandable]="true"
-          class="textarea"
-          [ngModel]="item.name"
+          [(ngModel)]="item.name"
+          (ngModelChange)="onValueChange(item)"
         ></tui-text-area>
       </td>
 
@@ -27,27 +33,29 @@
         <tui-text-area
           class="textarea"
           [expandable]="true"
-          class="textarea"
-          [ngModel]="item.address"
-        ></tui-text-area>
-      </td>
-
-      <td *tuiCell="'email'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          class="textarea"
-          [ngModel]="item.email"
+          [(ngModel)]="item.address"
+          (ngModelChange)="onValueChange(item)"
         ></tui-text-area>
       </td>
 
       <td *tuiCell="'phoneNumber'" tuiTd>
-        <tui-text-area
+        <tui-input-phone
           class="textarea"
-          [expandable]="true"
+          [(ngModel)]="item.phoneNumber"
+          (ngModelChange)="onValueChange(item)"
+        >
+          <input tuiTextfield autocomplete="tel"
+        /></tui-input-phone>
+      </td>
+
+      <td *tuiCell="'email'" tuiTd>
+        <tui-input
           class="textarea"
-          [ngModel]="item.phoneNumber"
-        ></tui-text-area>
+          [(ngModel)]="item.email"
+          (ngModelChange)="onValueChange(item)"
+        >
+          <input tuiTextfield type="email"
+        /></tui-input>
       </td>
 
       <td *tuiCell="'actions'" tuiTd class="actions">
@@ -57,6 +65,9 @@
           appearance="icon"
           shape="rounded"
           size="s"
+          class="action-btn"
+          [style.visibility]="item.id !== undefined ? 'visible' : 'hidden'"
+          (click)="delete(item)"
         ></button>
         <button
           tuiIconButton
@@ -64,6 +75,8 @@
           appearance="flat"
           shape="rounded"
           size="s"
+          class="action-btn"
+          (click)="save(item)"
         ></button>
       </td>
     </tr>

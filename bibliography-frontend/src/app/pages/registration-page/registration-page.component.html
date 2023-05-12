@@ -2,27 +2,39 @@
   <div class="tui-row tui-row_align_center tui-row_adaptive">
     <div class="tui-col_6 tui-col-offset_3">
       <tui-island class="island tui-space_top-5">
-        <form class="tui-form">
+        <form class="tui-form" [formGroup]="form" (ngSubmit)="submit()">
           <h4 class="tui-form__header tui-island_text-align_center">
             Регистрация
           </h4>
+          <div class="tui-form__row">
+            <tui-input formControlName="login">
+              Логин
+              <input tuiTextfield type="text" />
+            </tui-input>
+          </div>
+          <div class="tui-form__row">
+            <tui-input formControlName="password">
+              Пароль
+              <input tuiTextfield />
+            </tui-input>
+          </div>
 
           <div class="tui-form__row">
-            <tui-input name="lastName">
+            <tui-input formControlName="lastName">
               Фамилия
               <input tuiTextfield type="text" />
             </tui-input>
           </div>
 
           <div class="tui-form__row">
-            <tui-input name="firstName">
+            <tui-input formControlName="firstName">
               Имя
               <input tuiTextfield type="text" />
             </tui-input>
           </div>
 
           <div class="tui-form__row">
-            <tui-input name="middleName">
+            <tui-input formControlName="middleName">
               Отчество
               <input tuiTextfield type="text" />
             </tui-input>
@@ -38,16 +50,16 @@
               >
                 <tui-radio-block
                   contentAlign="right"
-                  name="sex"
-                  [item]="'fruit1'"
+                  formControlName="genderType"
+                  [item]="GenderType.MALE"
                   [hideRadio]="true"
                 >
                   Мужской
                 </tui-radio-block>
                 <tui-radio-block
                   contentAlign="right"
-                  name="sex"
-                  [item]="'fruit2'"
+                  formControlName="genderType"
+                  [item]="GenderType.FEMALE"
                   [hideRadio]="true"
                 >
                   Женский
@@ -57,7 +69,7 @@
           </div>
 
           <div class="tui-form__row">
-            <tui-input-date formControlName="birthday">
+            <tui-input-date toNativeDate formControlName="birthday">
               День рождения
             </tui-input-date>
           </div>
@@ -70,7 +82,7 @@
           </div>
 
           <div class="tui-form__row">
-            <tui-input-phone formControlName="phone">
+            <tui-input-phone formControlName="phoneNumber">
               Номер телефона
               <input tuiTextfield autocomplete="tel" />
             </tui-input-phone>
@@ -89,6 +101,7 @@
               type="submit"
               class="tui-form__button"
               class="register"
+              [disabled]="form.invalid"
             >
               Зарегистрироваться
             </button>

@@ -1,0 +1,14 @@
+<tui-badged-content
+  [contentTop]="0"
+  [colorTop]="publisherService.search.trim() != ''? 'var(--tui-error-fill)':''"
+  class="input"
+
+  ><tui-input
+    tuiTextfieldCleaner="true"
+    [(ngModel)]="search"
+  >
+    Поиск по названию
+  </tui-input>
+</tui-badged-content>
+
+<button tuiButton (click)="runSearch()">Поиск</button>

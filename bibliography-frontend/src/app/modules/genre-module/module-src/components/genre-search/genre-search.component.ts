@@ -7,5 +7,11 @@ import { GenreService } from '../../services/genre.service';
   styleUrls: ['./genre-search.component.scss']
 })
 export class GenreSearchComponent {
+  search = ""
  constructor (public genreService:GenreService) {}
+
+ runSearch() {
+  this.genreService.search = this.search;
+ }
+
 }

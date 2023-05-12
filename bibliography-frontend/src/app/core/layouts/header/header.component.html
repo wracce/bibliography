@@ -1,4 +1,20 @@
-
-  <div class="left-group"><button tuiIconButton icon="tuiIconMoonLarge" shape="rounded" appearance="mono" (click)="themeService.changeDark()"></button> </div>
-  <div class="right-group"><button tuiButton appearance="whiteblock-active" size="m">Выход</button></div>
-
+<div class="left-group">
+  <button
+    tuiIconButton
+    icon="tuiIconMoonLarge"
+    shape="rounded"
+    appearance="mono"
+    (click)="themeService.changeDark()"
+  ></button>
+</div>
+<div class="right-group">
+  <button
+    tuiButton
+    appearance="whiteblock-active"
+    size="m"
+    (click)="sessionService.logout()"
+    *ngIf="sessionService.isLoggedIn"
+  >
+    Выход
+  </button>
+</div>

@@ -1,7 +1,14 @@
-<tui-input
+<tui-badged-content
+  [contentTop]="0"
+  [colorTop]="genreService.search.trim() != ''? 'var(--tui-error-fill)':''"
   class="input"
-  tuiTextfieldCleaner="true"
-  [(ngModel)]="genreService.search"
->
-  Поиск по названию
-</tui-input>
+
+  ><tui-input
+    tuiTextfieldCleaner="true"
+    [(ngModel)]="search"
+  >
+    Поиск по названию
+  </tui-input>
+</tui-badged-content>
+
+<button tuiButton (click)="runSearch()">Поиск</button>

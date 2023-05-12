@@ -2,18 +2,18 @@
   <div class="tui-row tui-row_align_center tui-row_adaptive content">
     <div class="tui-col_6 tui-col-offset_3">
       <tui-island class="island">
-        <form class="tui-form">
+        <form class="tui-form" #form="ngForm">
           <h3 class="tui-form__header tui-island_text-align_center">
             Авторизация
           </h3>
           <div class="tui-form__row">
-            <tui-input name="username" class="tui-space_bottom-3">
+            <tui-input name="username" class="tui-space_bottom-3" ngModel>
               Логин
               <input tuiTextfield type="text" />
             </tui-input>
           </div>
           <div class="tui-form__row">
-            <tui-input-password name="password" tuiTextfieldSize="s">
+            <tui-input-password name="password" tuiTextfieldSize="s" ngModel>
               Пароль
               <input tuiTextfield />
             </tui-input-password>
@@ -24,6 +24,7 @@
               type="submit"
               class="tui-form__button"
               class="login"
+              (click)="sessionService.setUsernameAndPassword(form.controls['username'].value,form.controls['password'].value); sessionService.signIn()"
             >
               Войти
             </button>

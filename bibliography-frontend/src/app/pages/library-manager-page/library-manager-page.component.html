@@ -18,29 +18,34 @@
   </button>
 </nav>
 
-<tui-scrollbar class="content">
+<div class="content">
   <div class="publishers-list-tab" *ngIf="activeTabIndex == 0">
+    <!-- <div class="tools-block">
+      <app-book-search></app-book-search>
+    </div> -->
     <app-book-list></app-book-list>
     <!-- <button tuiIconButton icon="tuiIconFilePlusLarge" class="flat-button"></button> -->
   </div>
   <div class="publishers-list-tab" *ngIf="activeTabIndex == 1">
+    <div class="tools-block">
+      <app-publisher-search></app-publisher-search>
+    </div>
     <app-publisher-list></app-publisher-list>
     <!-- <button tuiIconButton icon="tuiIconFilePlusLarge" class="flat-button"></button> -->
   </div>
 
   <div class="publishers-list-tab" *ngIf="activeTabIndex == 2">
+    <div class="tools-block">
+      <app-author-search></app-author-search>
+    </div>
     <app-author-list></app-author-list>
     <!-- <button tuiIconButton icon="tuiIconFilePlusLarge" class="flat-button"></button> -->
   </div>
 
   <app-genre-tab *ngIf="activeTabIndex == 3"> </app-genre-tab>
 
-  <div class="publishers-list-tab" *ngIf="activeTabIndex == 4">
-    <app-userform-search></app-userform-search>
-    <app-userform-list></app-userform-list>
-    <!-- <button tuiIconButton icon="tuiIconFilePlusLarge" class="flat-button"></button> -->
-  </div>
-</tui-scrollbar>
+  <app-userform-tab *ngIf="activeTabIndex == 4"> </app-userform-tab>
+
 
 <ng-template
   let-observer

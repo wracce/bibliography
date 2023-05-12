@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-import { UserformService } from '../../services/userform.service';
+import { UserFormService } from '../../services/userform.service';
 
 @Component({
-  selector: 'app-userform-search',
-  templateUrl: './userform-search.component.html',
-  styleUrls: ['./userform-search.component.scss']
+  selector: 'app-userForm-search',
+  templateUrl: './userForm-search.component.html',
+  styleUrls: ['./userForm-search.component.scss']
 })
-export class UserformSearchComponent {
+export class UserFormSearchComponent {
+  search = ""
+ constructor (public userFormService:UserFormService) {}
 
-  constructor(public userformService:UserformService) {}
+ runSearch() {
+  this.userFormService.search = this.search;
+ }
 
 }

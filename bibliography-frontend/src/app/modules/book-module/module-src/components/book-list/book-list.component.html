@@ -1,116 +1,170 @@
-<table tuiTable class="table" [columns]="columns">
-  <thead class="">
-    <tr tuiThGroup>
-      <th tuiTh *tuiHead="'id'">№</th>
-      <th tuiTh *tuiHead="'name'">Название</th>
-      <th tuiTh *tuiHead="'edition'">Издание</th>
-      <th tuiTh *tuiHead="'editionYear'">Год издания</th>
-      <th tuiTh *tuiHead="'author'">Автор</th>
-      <th tuiTh *tuiHead="'publisher'">издательство</th>
-      <th tuiTh *tuiHead="'genre'">Жанр</th>
-      <th tuiTh *tuiHead="'isbn'">ISBN</th>
-      <th tuiTh *tuiHead="'desc'">Описание</th>
-      <th tuiTh *tuiHead="'instanceCount'">Кол-во экземпляров</th>
-      <th tuiTh *tuiHead="'issuedCount'">Кол-во на руках</th>
-      <th tuiTh *tuiHead="'actions'"></th>
-    </tr>
-  </thead>
-  <tbody tuiTbody [data]="data">
-    <tr *ngFor="let item of data; let i = index" tuiTr>
-      <td *tuiCell="'id'" tuiTd>{{ i + 1 }}</td>
+<tui-scrollbar waIntersectionRoot class="content" [hidden]="true">
+  <table tuiTable class="table" [columns]="columns">
+    <thead tuiThead>
+      <tr tuiThGroup>
+        <th tuiTh *tuiHead="'id'">№</th>
+        <th tuiTh *tuiHead="'name'">Название</th>
+        <th tuiTh *tuiHead="'description'">Описание</th>
+        <th tuiTh *tuiHead="'edition'">Издание</th>
+        <th tuiTh *tuiHead="'editionYear'">Год издания</th>
+        <th tuiTh *tuiHead="'ISBN'">ISBN</th>
+        <th tuiTh *tuiHead="'pageCount'">Кол-во страниц</th>
+        <th tuiTh *tuiHead="'instanceCount'">Кол-во экземпляров</th>
+        <th tuiTh *tuiHead="'issuedCount'">Кол-во на руках</th>
+        <th tuiTh *tuiHead="'publisher'">Издательство</th>
+        <th tuiTh *tuiHead="'authors'">Авторы</th>
+        <th tuiTh *tuiHead="'genres'">Жанры</th>
+        <th tuiTh *tuiHead="'actions'" [sorter]="null"></th>
+      </tr>
+    </thead>
+    <tbody tuiTbody [data]="data">
+      <tr
+        *ngFor="
+          let element of data | search : bookService.search;
+          let i = index
+        "
+        tuiTr
+        [class.tr_changed]="isChangeItem(element)"
+      >
+        <td *tuiCell="'id'" tuiTd>{{ i + 1 }}</td>
 
-      <td *tuiCell="'name'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.name"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'name'" tuiTd>
+          <tui-text-area
+            class="textarea"
+            [expandable]="true"
+            [(ngModel)]="element.name"
+            (ngModelChange)="onValueChange(element)"
+          ></tui-text-area>
+        </td>
 
-      <td *tuiCell="'edition'" tuiTd>
-        <tui-input-number
-          class="textarea"
-          [ngModel]="item.edition"
-        ></tui-input-number>
-      </td>
+        <td *tuiCell="'description'" tuiTd>
+          <tui-text-area
+            class="textarea"
+            [expandable]="true"
+            [(ngModel)]="element.description"
+            (ngModelChange)="onValueChange(element)"
+          ></tui-text-area>
+        </td>
 
-      <td *tuiCell="'editionYear'" tuiTd>
-        <tui-input-number
-          class="textarea"
-          [ngModel]="item.editionYear"
-        ></tui-input-number>
-      </td>
+        <td *tuiCell="'edition'" tuiTd>
+          <tui-input-number
+            [(ngModel)]="element.edition"
+            (ngModelChange)="onValueChange(element)"
+            class="textarea"
+            [tuiTextfieldPostfix]="'RUB' | tuiCurrency"
+          ></tui-input-number>
+        </td>
 
-      <td *tuiCell="'author'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.author?.firstName"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'editionYear'" tuiTd>
+          <tui-input-number
+            [(ngModel)]="element.editionYear"
+            (ngModelChange)="onValueChange(element)"
+            class="textarea"
+            [tuiTextfieldPostfix]="'RUB' | tuiCurrency"
+          ></tui-input-number>
+        </td>
 
-      <td *tuiCell="'publisher'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.publisher?.name"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'ISBN'" tuiTd>
+          <tui-text-area
+            class="textarea"
+            [expandable]="true"
+            [(ngModel)]="element.isbn"
+            (ngModelChange)="onValueChange(element)"
+          ></tui-text-area>
+        </td>
 
-      <td *tuiCell="'genre'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.genre?.name"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'pageCount'" tuiTd>
+          <tui-input-number
+            [(ngModel)]="element.pageCount"
+            (ngModelChange)="onValueChange(element)"
+            class="textarea"
+            [tuiTextfieldPostfix]="'RUB' | tuiCurrency"
+          ></tui-input-number>
+        </td>
+        <td *tuiCell="'instanceCount'" tuiTd>
+          <tui-input-number
+            [(ngModel)]="element.instanceCount"
+            (ngModelChange)="onValueChange(element)"
+            class="textarea"
+            [tuiTextfieldPostfix]="'RUB' | tuiCurrency"
+          ></tui-input-number>
+        </td>
+        <td *tuiCell="'issuedCount'" tuiTd>
+          <tui-input-number
+            [(ngModel)]="element.issuedCount"
+            (ngModelChange)="onValueChange(element)"
+            class="textarea"
+            [tuiTextfieldPostfix]="'RUB' | tuiCurrency"
+          ></tui-input-number>
+        </td>
 
-      <td *tuiCell="'isbn'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.isbn"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'publisher'" tuiTd class="select">
+          <tui-select
+            [(ngModel)]="element.publisher"
+            (ngModelChange)="onValueChange(element)"
+            class="textarea"
+            [valueContent]="element.publisher!.name || ''"
+            class="select"
+          >
+            <ng-template tuiDataList>
+              <tui-data-list>
+                <button
+                  *ngFor="let publisher of publishers"
+                  tuiOption
+                  [value]="publisher"
+                >
+                  {{ publisher.name }}
+                </button>
+              </tui-data-list>
+            </ng-template>
+          </tui-select>
+        </td>
 
-      <td *tuiCell="'desc'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [ngModel]="item.desc"
-        ></tui-text-area>
-      </td>
+        <td *tuiCell="'authors'" tuiTd>
+          <!-- <tui-tag
+            *ngFor="let author of element.authors; let index = index;"
+            size="l"
+            status="custom"
+            class="tag"
+            [value]="author.getShortName()|| ''"
+            [hoverable]="true"
+            [removable]="true"
+          ></tui-tag> -->
+        </td>
+        <td *tuiCell="'genres'" tuiTd>
+          <tui-tag
+            *ngFor="let genre of element.genres; let index = index;"
+            size="l"
+            status="custom"
+            class="tag"
+            [value]="genre.name|| ''"
+            [hoverable]="true"
+            [removable]="true"
+          ></tui-tag>
+        </td>
 
-      <td *tuiCell="'instanceCount'" tuiTd>
-        <tui-input-number
-          class="textarea"
-          [ngModel]="item.instanceCount"
-        ></tui-input-number>
-      </td>
-
-      <td *tuiCell="'issuedCount'" tuiTd>
-        <tui-input-number
-          class="textarea"
-          [ngModel]="item.issuedCount"
-        ></tui-input-number>
-      </td>
-
-      <td *tuiCell="'actions'" tuiTd class="actions">
-        <button
-          tuiIconButton
-          icon="tuiIconCloseLarge"
-          appearance="icon"
-          shape="rounded"
-          size="s"
-        ></button>
-        <button
-          tuiIconButton
-          icon="tuiIconSave"
-          appearance="flat"
-          shape="rounded"
-          size="s"
-        ></button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <td *tuiCell="'actions'" tuiTd class="actions">
+          <button
+            tuiIconButton
+            icon="tuiIconCloseLarge"
+            appearance="icon"
+            shape="rounded"
+            size="s"
+            class="action-btn"
+            [style.visibility]="element.id !== undefined ? 'visible' : 'hidden'"
+            (click)="delete(element)"
+          ></button>
+          <button
+            tuiIconButton
+            icon="tuiIconSave"
+            appearance="flat"
+            shape="rounded"
+            size="s"
+            class="action-btn"
+            (click)="save(element)"
+          ></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</tui-scrollbar>

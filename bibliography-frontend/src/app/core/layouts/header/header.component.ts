@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ThemeService } from '../../theme/theme.service';
+import { SessionService } from '../../security/services/session.service';
 
 @Component({
   selector: '[app-header]',
@@ -7,5 +8,5 @@ import { ThemeService } from '../../theme/theme.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  constructor(public themeService:ThemeService) {}
+  constructor(public themeService:ThemeService, public sessionService:SessionService) {}
 }

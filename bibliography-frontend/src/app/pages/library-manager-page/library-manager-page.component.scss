@@ -3,6 +3,9 @@
 :host {
   display: flex;
   height: 100%;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
 }
 
 .side {
@@ -10,6 +13,7 @@
   padding-right: 0;
   min-width: 10rem;
   width: 10rem;
+
 }
 
 .side__link {
@@ -22,12 +26,18 @@
 }
 
 .content {
-  width: 100%;
   background-color: var(--tui-base-02);
+  width: calc(100% - 10rem - 1.5rem);
+  max-width: calc(100% - 10rem - 1.5rem);
+  position: relative;
+
 }
 
 .publishers-list-tab {
   width: 100%;
+  max-width: 100%;
+  position: relative;
+
 }
 
 .flat-button {
@@ -36,3 +46,6 @@
   bottom: 1rem;
 }
 
+.tools-block {
+  margin: 1em;
+}

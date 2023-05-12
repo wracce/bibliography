@@ -1,30 +1,42 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PublisherListComponent } from './module-src/components/publisher-list/publisher-list.component';
-import { PublisherRowComponent } from './module-src/components/publisher-row/publisher-row.component';
-import { PublisherModalComponent } from './module-src/components/publisher-modal/publisher-modal.component';
-import {TuiTableModule} from '@taiga-ui/addon-table';
+import { TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiButtonModule } from '@taiga-ui/core';
-import { TuiTextAreaModule } from '@taiga-ui/kit';
+import { TuiBadgeModule, TuiBadgedContentModule, TuiInputModule, TuiInputPhoneModule, TuiTextAreaModule } from '@taiga-ui/kit';
 import { FormsModule } from '@angular/forms';
+import { PublisherListComponent } from './module-src/components/publisher-list/publisher-list.component';
+import { TuiInputDateModule } from '@taiga-ui/kit';
+import { CoreModule } from 'src/app/core/core.module';
+import { PublisherClientService } from './module-src/services/publisher-client.service';
+import { PublisherService } from './module-src/services/publisher.service';
+import { PublisherSearchComponent } from './module-src/components/publisher-search/publisher-search.component';
+import { TuiInputColorModule } from '@taiga-ui/addon-editor';
+import { SearchPipe } from './module-src/pipes/search.pipe';
 
 
 
 @NgModule({
   declarations: [
     PublisherListComponent,
-    PublisherRowComponent,
-    PublisherModalComponent
+    PublisherSearchComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
     TuiTableModule,
     TuiButtonModule,
     TuiTextAreaModule,
-    FormsModule
+    TuiInputModule,
+    FormsModule,
+    TuiInputDateModule,
+    CoreModule,
+    TuiBadgedContentModule,
+    TuiInputPhoneModule
   ],
   exports: [
-    PublisherListComponent
-  ]
+    PublisherListComponent,
+    PublisherSearchComponent
+  ],
+  providers: [PublisherClientService,PublisherService]
 })
 export class PublisherModule { }

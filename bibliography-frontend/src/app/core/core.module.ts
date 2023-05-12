@@ -10,6 +10,9 @@ import {
 } from '@taiga-ui/core';
 import { ThemeService } from './theme/theme.service';
 import { ExampleNativeDateTransformerDirective } from './native-date-transformer/native-date-transformer.directive';
+import { AuthClientService } from './security/services/auth-client.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './security/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [HeaderComponent, ExampleNativeDateTransformerDirective],
@@ -19,8 +22,9 @@ import { ExampleNativeDateTransformerDirective } from './native-date-transformer
     TuiButtonModule,
     TuiThemeNightModule,
     TuiModeModule,
-    TuiLinkModule
+    TuiLinkModule,
   ],
   exports: [HeaderComponent, ExampleNativeDateTransformerDirective],
+  providers:[{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },]
 })
 export class CoreModule {}

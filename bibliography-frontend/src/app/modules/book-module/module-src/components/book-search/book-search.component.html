@@ -1,0 +1,13 @@
+<tui-badged-content
+  [contentTop]="0"
+  [colorTop]="bookService.search.trim() != ''? 'var(--tui-error-fill)':''"
+  class="input"
+
+  ><tui-input
+    [(ngModel)]="search"
+  >
+    Поиск по ФИО или логину
+  </tui-input>
+</tui-badged-content>
+
+<button tuiButton (click)="runSearch()">Поиск</button>
