@@ -1,3 +1,4 @@
+<tui-scrollbar waIntersectionRoot [hidden]="true">
 <table tuiTable class="table" [columns]="columns">
   <thead class="">
     <tr tuiThGroup>
@@ -9,11 +10,11 @@
   </thead>
   <tbody tuiTbody [data]="data">
     <tr
-      *ngFor="let item of data | search:genreService.search; let i = index"
+      *ngFor="let item of data | search : genreService.search; let i = index"
       tuiTr
       [class.tr_changed]="isChangeItem(item)"
     >
-      <td *tuiCell="'id'" tuiTd>{{ i + 1 }}</td>
+      <td *tuiCell="'id'" tuiTd>{{ item.id != undefined?i + 1:''}}</td>
 
       <td *tuiCell="'name'" tuiTd>
         <tui-text-area
@@ -30,31 +31,46 @@
           [expandable]="true"
           [(ngModel)]="item.description"
           (ngModelChange)="onValueChange(item)"
-
         ></tui-text-area>
       </td>
 
       <td *tuiCell="'actions'" tuiTd class="actions">
         <button
           tuiIconButton
-          icon="tuiIconCloseLarge"
-          appearance="icon"
-          shape="rounded"
           size="s"
-          class="action-btn"
-          [style.visibility]="item.id !== undefined?'visible':'hidden'"
-          (click)="delete(item)"
-        ></button>
-        <button
-          tuiIconButton
+          appearance="primary"
           icon="tuiIconSave"
-          appearance="flat"
-          shape="rounded"
-          size="s"
-          class="action-btn"
+          *ngIf="item.id == undefined"
           (click)="save(item)"
         ></button>
+
+        <tui-hosted-dropdown
+          [content]="actionsContent"
+          *ngIf="item.id !== undefined"
+        >
+          <button
+            tuiIconButton
+            size="s"
+            appearance="accent"
+            icon="tuiIconMoreVertical"
+          ></button>
+        </tui-hosted-dropdown>
+        <ng-template #actionsContent>
+          <tui-data-list role="menu">
+            <tui-opt-group>
+              <button tuiOption (click)="update(item)">
+                Сохранить
+                <tui-svg src="tuiIconSave"></tui-svg>
+              </button>
+              <button tuiOption (click)="delete(item)">
+                Удалить
+                <tui-svg src="tuiIconTrash2"></tui-svg>
+              </button>
+            </tui-opt-group>
+          </tui-data-list>
+        </ng-template>
       </td>
     </tr>
   </tbody>
 </table>
+</tui-scrollbar>

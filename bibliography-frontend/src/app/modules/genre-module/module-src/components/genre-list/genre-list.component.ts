@@ -31,10 +31,15 @@ export class GenreListComponent implements OnInit {
   readonly columns = ['id', 'name', 'desc', 'actions'];
 
   save(item: Genre) {
-    if (item.id === undefined) this.genreService.add(item);
-    else this.genreService.update(item);
+    this.genreService.add(item);
     this.changedItems.delete(item);
   }
+
+  update(item: Genre) {
+    this.genreService.update(item);
+    this.changedItems.delete(item);
+  }
+
 
   delete(item: Genre) {
     if (item.id !== undefined)

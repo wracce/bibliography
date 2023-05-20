@@ -1,5 +1,6 @@
 package com.wracce.bibliography.security.auth;
 
+import com.wracce.bibliography.error.ErrorMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

@@ -17,16 +17,23 @@ export class SearchPipe implements PipeTransform {
   private foundSearch(author: Author, search: string): boolean {
     let answer = false;
     let searchStrings = [
-      '' + author.firstName + author.lastName + author.middleName,
-      '' + author.firstName + author.lastName + author.middleName,
-      '' + author.firstName + author.lastName + author.middleName,
-      '' + author.firstName + author.lastName + author.middleName,
-      '' + author.firstName + author.lastName + author.middleName,
-      '' + author.firstName + author.lastName + author.middleName,
+      '' + author.firstName + author.lastName + author.middleName + author.id,
+      '' + author.firstName + author.lastName + author.middleName + author.id,
+      '' + author.firstName + author.lastName + author.middleName + author.id,
+      '' + author.firstName + author.lastName + author.middleName + author.id,
+      '' + author.firstName + author.lastName + author.middleName + author.id,
+      '' + author.firstName + author.lastName + author.middleName + author.id,
+
+      '' + author.id + author.firstName + author.lastName + author.middleName,
+      '' + author.id + author.firstName + author.lastName + author.middleName,
+      '' + author.id + author.firstName + author.lastName + author.middleName,
+      '' + author.id + author.firstName + author.lastName + author.middleName,
+      '' + author.id + author.firstName + author.lastName + author.middleName,
+      '' + author.id + author.firstName + author.lastName + author.middleName,
     ];
     search = search.replaceAll(' ', '').trim();
     searchStrings.forEach((str) => {
-      str = str.replaceAll(' ', '').trim();
+      str = str.replaceAll(' ', '').toLowerCase().trim();
       if (str.includes(search)) answer= true;
     });
 

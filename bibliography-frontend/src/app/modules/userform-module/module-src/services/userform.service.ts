@@ -8,6 +8,7 @@ export class UserFormService {
   search = '';
   private _list: UserForm[] = [];
 
+
   get list() {
     return this._list;
   }
@@ -18,13 +19,16 @@ export class UserFormService {
     this.userFormClientService.getAll().subscribe({
       next: (arr) => {
         this._list = [...arr];
+        this.addEmptyItem()
       },
     });
   }
 
   add(userForm: UserForm) {
     this.userFormClientService.create(userForm).subscribe({
-      next: () => {
+      next: (u) => {
+        userForm.id = u.id;
+        this.addEmptyItem()
         console.log('Успешно добавлено');
       },
     });

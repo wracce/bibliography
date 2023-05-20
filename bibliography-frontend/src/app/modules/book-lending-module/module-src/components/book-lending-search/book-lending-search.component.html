@@ -1,0 +1,30 @@
+<tui-badged-content
+  [contentTop]="0"
+  [colorTop]="bookLendingService.search.trim() != '' ? 'var(--tui-error-fill)' : ''"
+  class="input"
+  ><tui-input [(ngModel)]="search"> Поиск по названию или идентификатору</tui-input>
+</tui-badged-content>
+
+<tui-badged-content
+  [contentTop]="0"
+  [colorTop]="bookLendingService.searchFIO.trim() != '' ? 'var(--tui-error-fill)' : ''"
+  class="input"
+  ><tui-input [(ngModel)]="searchFIO"> Поиск по ФИО или идентификатору</tui-input>
+</tui-badged-content>
+
+<tui-badged-content
+  [contentTop]="0"
+  [colorTop]="
+  bookLendingService.searchOnlyHands == true ? 'var(--tui-error-fill)' : ''
+  "
+  class="input-checkbox"
+  ><tui-checkbox-block
+    [(ngModel)]="searchOnlyHands"
+    contentAlign="right"
+    size="m"
+  >
+    Только книги на руках
+  </tui-checkbox-block>
+</tui-badged-content>
+
+<button tuiButton (click)="runSearch()">Поиск</button>

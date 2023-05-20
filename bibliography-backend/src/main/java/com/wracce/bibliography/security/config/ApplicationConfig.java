@@ -1,6 +1,6 @@
 package com.wracce.bibliography.security.config;
 
-import com.wracce.bibliography.security.user.UserRepository;
+import com.wracce.bibliography.module.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

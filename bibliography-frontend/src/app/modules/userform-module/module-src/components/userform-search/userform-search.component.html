@@ -1,13 +1,10 @@
 <tui-badged-content
   [contentTop]="0"
-  [colorTop]="userFormService.search.trim() != ''? 'var(--tui-error-fill)':''"
+  [colorTop]="
+    userFormService.search.trim() != '' ? 'var(--tui-error-fill)' : ''
+  "
   class="input"
-
-  ><tui-input
-    [(ngModel)]="search"
-  >
-    Поиск по ФИО или логину
-  </tui-input>
+  ><tui-input [(ngModel)]="search"> Поиск по ФИО или логину или идентификатору </tui-input>
 </tui-badged-content>
 
 <button tuiButton (click)="runSearch()">Поиск</button>

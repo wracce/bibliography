@@ -24,7 +24,8 @@ export class AuthorService {
 
   add(author: Author) {
     this.authorClientService.create(author).subscribe({
-      next: () => {
+      next: (a) => {
+        author.id = a.id;
         this.addEmptyItem();
         console.log('Успешно добавлено');
       },

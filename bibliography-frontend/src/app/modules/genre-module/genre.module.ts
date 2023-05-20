@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiTableModule } from '@taiga-ui/addon-table';
-import { TuiButtonModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiDataListModule, TuiHostedDropdownModule, TuiScrollbarModule, TuiSvgModule } from '@taiga-ui/core';
 import { TuiBadgeModule, TuiBadgedContentModule, TuiInputModule, TuiTextAreaModule } from '@taiga-ui/kit';
 import { FormsModule } from '@angular/forms';
 import { GenreListComponent } from './module-src/components/genre-list/genre-list.component';
@@ -30,7 +30,11 @@ import { SearchPipe } from './module-src/pipes/search.pipe';
     FormsModule,
     TuiInputDateModule,
     CoreModule,
-    TuiBadgedContentModule
+    TuiBadgedContentModule,
+    TuiSvgModule,
+    TuiDataListModule,
+    TuiHostedDropdownModule,
+    TuiScrollbarModule
   ],
   exports: [
     GenreListComponent,

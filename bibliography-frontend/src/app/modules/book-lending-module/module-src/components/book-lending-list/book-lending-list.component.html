@@ -1,0 +1,129 @@
+<tui-scrollbar waIntersectionRoot [hidden]="true">
+  <table tuiTable class="table" [columns]="columns">
+    <thead class="">
+      <tr tuiThGroup>
+        <th tuiTh *tuiHead="'id'">№</th>
+        <th tuiTh *tuiHead="'indexBook'">Идентификатор книги</th>
+        <th tuiTh *tuiHead="'bookName'">Название</th>
+        <th tuiTh *tuiHead="'indexUserForm'">Идентификатор формуляра</th>
+        <th tuiTh *tuiHead="'userFormFullName'">Абонент</th>
+        <th tuiTh *tuiHead="'lendingDate'">Дата выдачи</th>
+        <th tuiTh *tuiHead="'returnDate'">Дата возврата</th>
+        <th tuiTh *tuiHead="'returned'">Статус возврата</th>
+        <th tuiTh *tuiHead="'returnedDate'">Возвращено</th>
+        <th tuiTh *tuiHead="'actions'" [sorter]="null"></th>
+      </tr>
+    </thead>
+    <tbody tuiTbody [data]="data">
+      <tr
+        *ngFor="
+          let item of data | search : bookLendingService.search| searchByFIO : bookLendingService.searchFIO | searchOnHands : bookLendingService.searchOnlyHands;
+          let i = index
+        "
+        tuiTr
+      >
+        <td *tuiCell="'id'" tuiTd>{{ item.id != undefined?i + 1:''}}</td>
+
+        <td *tuiCell="'indexBook'" tuiTd>
+          {{ item.book != undefined && item.book.id != undefined ? item.book.id : "" }}
+        </td>
+
+
+        <td *tuiCell="'bookName'" tuiTd>
+          <tui-text-area
+            class="textarea"
+            [expandable]="true"
+            [(ngModel)]="item.book!.name"
+          ></tui-text-area>
+        </td>
+
+        <td *tuiCell="'indexUserForm'" tuiTd>
+          {{ item.userForm != undefined && item.userForm.id != undefined ? item.userForm.id : "" }}
+        </td>
+
+        <td *tuiCell="'userFormFullName'" tuiTd>
+          {{
+            item.userForm!.lastName +
+              " " +
+              item.userForm!.firstName +
+              " " +
+              item.userForm!.middleName
+          }}
+        </td>
+
+        <td *tuiCell="'lendingDate'" tuiTd>
+          <tui-input-date
+            toNativeDate
+            class="textarea"
+            [(ngModel)]="item.lendingDate"
+          ></tui-input-date>
+        </td>
+
+        <td *tuiCell="'returnDate'" tuiTd>
+          <tui-input-date
+            toNativeDate
+            class="textarea"
+            [(ngModel)]="item.returnDate"
+          ></tui-input-date>
+        </td>
+
+        <td *tuiCell="'returned'" tuiTd>
+          <div
+            *ngIf="
+              item.bookReturning != null &&
+                item.bookReturning.returnDate != null;
+              else templateName
+            "
+          >
+            <tui-tag
+              class="tag"
+              size="l"
+              status="success"
+              [value]="'Возвращено'"
+            ></tui-tag>
+          </div>
+          <ng-template #templateName>
+            <tui-tag
+              class="tag"
+              size="l"
+              status="warning"
+              [value]="'На руках'"
+            ></tui-tag
+          ></ng-template>
+
+          <tui-tag
+            class="tag"
+            *ngIf="isLate(item)"
+            size="l"
+            status="error"
+            [value]="'Просрочено'"
+          ></tui-tag>
+        </td>
+
+        <td *tuiCell="'returnedDate'" tuiTd>
+          <tui-input-date
+            *ngIf="
+              item.bookReturning != null &&
+              item.bookReturning.returnDate != null
+            "
+            toNativeDate
+            class="textarea"
+            [(ngModel)]="item.bookReturning.returnDate"
+          ></tui-input-date>
+        </td>
+
+        <td *tuiCell="'actions'" tuiTd class="actions" >
+          <button
+            tuiButton
+            icon="tuiIconBook"
+            size="s"
+            *ngIf="
+              item.bookReturning != null &&
+              item.bookReturning.returnDate == null
+            "
+          >Получить</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</tui-scrollbar>

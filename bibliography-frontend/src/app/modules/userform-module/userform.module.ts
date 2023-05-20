@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiTableModule } from '@taiga-ui/addon-table';
-import { TuiButtonModule, TuiDataListModule, TuiRootModule, TuiScrollbarModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { TuiBadgeModule, TuiBadgedContentModule, TuiDataListWrapperModule, TuiInputCountModule, TuiInputModule, TuiInputNumberModule, TuiInputPhoneModule, TuiSelectModule, TuiTextAreaModule } from '@taiga-ui/kit';
+import { TuiButtonModule, TuiDataListModule, TuiDialogModule, TuiHostedDropdownModule, TuiRootModule, TuiScrollbarModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiBadgeModule, TuiBadgedContentModule, TuiDataListWrapperModule, TuiInputCountModule, TuiInputModule, TuiInputNumberModule, TuiInputPasswordModule, TuiInputPhoneModule, TuiSelectModule, TuiTextAreaModule } from '@taiga-ui/kit';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserFormListComponent } from './module-src/components/userform-list/userform-list.component';
 import { TuiInputDateModule } from '@taiga-ui/kit';
@@ -16,7 +16,6 @@ import { TuiLetModule, TuiPortalModule } from '@taiga-ui/cdk';
 import { TuiCurrencyPipeModule } from '@taiga-ui/addon-commerce';
 import { TuiElasticStickyModule } from '@taiga-ui/addon-mobile';
 import { IntersectionObserverModule } from '@ng-web-apis/intersection-observer';
-
 
 
 @NgModule({
@@ -49,6 +48,10 @@ import { IntersectionObserverModule } from '@ng-web-apis/intersection-observer';
     TuiElasticStickyModule,
     TuiPortalModule,
     IntersectionObserverModule,
+    TuiSvgModule,
+    TuiHostedDropdownModule,
+    TuiDialogModule,
+    TuiInputPasswordModule
   ],
   exports: [
     UserFormListComponent,

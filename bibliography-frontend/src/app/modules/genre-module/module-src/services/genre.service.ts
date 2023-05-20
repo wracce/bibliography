@@ -24,7 +24,8 @@ export class GenreService {
 
   add(genre: Genre) {
     this.genreClientService.create(genre).subscribe({
-      next: () => {
+      next: (g) => {
+        genre.id = g.id;
         this.addEmptyItem();
         console.log('Успешно добавлено');
       },

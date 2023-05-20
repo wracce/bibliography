@@ -19,7 +19,7 @@ import { TuiOverscrollModule } from '@taiga-ui/cdk';
 import { PublisherModule } from './modules/publisher-module/publisher.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { JwtInterceptor } from './core/security/interceptors/jwt.interceptor';
+import { JwtInterceptor } from './core/security/helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,7 +37,7 @@ import { JwtInterceptor } from './core/security/interceptors/jwt.interceptor';
     TuiOverscrollModule,
     PublisherModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],

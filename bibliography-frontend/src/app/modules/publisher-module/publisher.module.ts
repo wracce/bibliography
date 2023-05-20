@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiTableModule } from '@taiga-ui/addon-table';
-import { TuiButtonModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiDataListModule, TuiHostedDropdownModule, TuiScrollbarModule, TuiSvgModule } from '@taiga-ui/core';
 import { TuiBadgeModule, TuiBadgedContentModule, TuiInputModule, TuiInputPhoneModule, TuiTextAreaModule } from '@taiga-ui/kit';
 import { FormsModule } from '@angular/forms';
 import { PublisherListComponent } from './module-src/components/publisher-list/publisher-list.component';
@@ -31,7 +31,11 @@ import { SearchPipe } from './module-src/pipes/search.pipe';
     TuiInputDateModule,
     CoreModule,
     TuiBadgedContentModule,
-    TuiInputPhoneModule
+    TuiInputPhoneModule,
+    TuiSvgModule,
+    TuiDataListModule,
+    TuiHostedDropdownModule,
+    TuiScrollbarModule
   ],
   exports: [
     PublisherListComponent,

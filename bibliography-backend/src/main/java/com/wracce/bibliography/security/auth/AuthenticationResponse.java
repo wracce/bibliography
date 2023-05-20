@@ -1,7 +1,7 @@
 package com.wracce.bibliography.security.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wracce.bibliography.security.user.Role;
+import com.wracce.bibliography.module.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

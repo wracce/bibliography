@@ -1,6 +1,6 @@
 package com.wracce.bibliography.security.config;
 
-import com.wracce.bibliography.security.token.TokenRepository;
+import com.wracce.bibliography.module.token.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

@@ -36,11 +36,6 @@ export class BookService {
   constructor(private bookClientService: BookClientService, private genreClientService:GenreClientService,private authorClientService:AuthorClientService, private publisherClientService:PublisherClientService) {}
 
   receiveData() {
-    this.genreClientService.getAll().subscribe({
-      next: (arr) => {
-        this._genres = [...arr];
-      },
-    });
     this.authorClientService.getAll().subscribe({
       next: (arr) => {
         this._authors = [...arr];
@@ -51,17 +46,27 @@ export class BookService {
         this._publishers = [...arr];
       },
     });
+    this.genreClientService.getAll().subscribe({
+      next: (arr) => {
+        this._genres = [...arr];
+      },
+    });
+
 
     this.bookClientService.getAll().subscribe({
       next: (arr) => {
         this._list = [...arr];
+        this.addEmptyItem();
+
       },
     });
   }
 
   add(book: Book) {
     this.bookClientService.create(book).subscribe({
-      next: () => {
+      next: (b) => {
+        book.id = b.id;
+        this.addEmptyItem();
         console.log('Успешно добавлено');
       },
     });
@@ -93,10 +98,10 @@ export class BookService {
     book.editionYear = new Date().getFullYear();
     book.genres = [];
     book.instanceCount = 1;
-    book.issuedCount = 1;
+    book.issuedCount = 0;
     book.name = '';
     book.pageCount = 1;
-    book.publisher = undefined;
+    book.publisher = this.publishers[0];
     this._list.push(book);
   }
 }

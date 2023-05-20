@@ -28,16 +28,25 @@ export class PublisherListComponent implements OnInit {
     return this.publisherService.list;
   }
 
-  readonly columns = ['id', 'name', 'address','phoneNumber','email', 'actions'];
+  readonly columns = [
+    'id',
+    'name',
+    'address',
+    'phoneNumber',
+    'email',
+    'actions',
+  ];
   save(item: Publisher) {
-    if (item.id === undefined) this.publisherService.add(item);
-    else this.publisherService.update(item);
+    this.publisherService.add(item);
+    this.changedItems.delete(item);
+  }
+
+  update(item: Publisher) {
+    this.publisherService.update(item);
     this.changedItems.delete(item);
   }
 
   delete(item: Publisher) {
-    if (item.id !== undefined)
-      this.publisherService.delete(item.id);
-
+    if (item.id !== undefined) this.publisherService.delete(item.id);
   }
 }

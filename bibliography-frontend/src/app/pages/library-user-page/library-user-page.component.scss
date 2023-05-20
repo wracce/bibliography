@@ -1,0 +1,78 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.scss';
+
+.container{
+  height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.tui-row{
+  height: 100%;
+
+}
+
+.left-group__col,.right-group__col{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.left-group__island{
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  border: 1px solid var(--tui-secondary);
+
+
+
+}
+
+.left-group__wrapper{
+  height: 100%;
+}
+
+.left-group__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+}
+
+.left-group__spacer{
+  flex: 1 1 auto;
+}
+
+.left-group__paragraph{
+  text-align: left;
+}
+
+.cost-block{
+  margin-top: 1rem;
+  border: 1px solid var(--tui-accent);
+
+  border-radius: var(--tui-radius-l);
+  padding: 0 1rem;
+}
+
+.cost-block__end{
+  float: right;
+}
+
+.library {
+  border: 1px solid var(--tui-secondary);
+
+
+  padding: 1rem;
+}
+
+
+.tabs{
+  margin-top: 1rem;
+  flex: 1 1 auto;
+  border: 1px solid var(--tui-secondary);
+
+}
+
+
+
+

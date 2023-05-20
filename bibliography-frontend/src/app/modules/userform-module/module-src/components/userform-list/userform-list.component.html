@@ -3,6 +3,7 @@
     <thead tuiThead>
       <tr tuiThGroup>
         <th tuiTh *tuiHead="'id'">№</th>
+        <th tuiTh *tuiHead="'index'">Идентификатор</th>
         <th tuiTh *tuiHead="'userLogin'" [sticky]="true">Логин</th>
         <th tuiTh *tuiHead="'firstName'">Имя</th>
         <th tuiTh *tuiHead="'lastName'">Фамилия</th>
@@ -26,8 +27,12 @@
         tuiTr
         [class.tr_changed]="isChangeItem(element)"
       >
-        <td *tuiCell="'id'" tuiTd>{{ i + 1 }}</td>
-
+        <td *tuiCell="'id'" tuiTd>
+          {{ element.id != undefined ? i + 1 : "" }}
+        </td>
+        <td *tuiCell="'index'" tuiTd>
+          {{ element.id != undefined ? element.id : "" }}
+        </td>
         <td *tuiCell="'userLogin'" tuiTd>
           <tui-text-area
             class="textarea"
@@ -167,25 +172,109 @@
         <td *tuiCell="'actions'" tuiTd class="actions">
           <button
             tuiIconButton
-            icon="tuiIconCloseLarge"
-            appearance="icon"
-            shape="rounded"
             size="s"
-            class="action-btn"
-            [style.visibility]="element.id !== undefined ? 'visible' : 'hidden'"
-            (click)="delete(element)"
-          ></button>
-          <button
-            tuiIconButton
+            appearance="primary"
             icon="tuiIconSave"
-            appearance="flat"
-            shape="rounded"
-            size="s"
-            class="action-btn"
+            *ngIf="element.id == undefined"
             (click)="save(element)"
           ></button>
+
+          <tui-hosted-dropdown
+            [content]="actionsContent"
+            *ngIf="element.id !== undefined"
+          >
+            <button
+              tuiIconButton
+              size="s"
+              appearance="accent"
+              icon="tuiIconMoreVertical"
+            ></button>
+          </tui-hosted-dropdown>
+          <ng-template #actionsContent>
+            <tui-data-list role="menu">
+              <tui-opt-group>
+                <button tuiOption (click)="update(element)">
+                  Сохранить
+                  <tui-svg src="tuiIconSave"></tui-svg>
+                </button>
+                <button tuiOption (click)="delete(element)">
+                  Удалить
+                  <tui-svg src="tuiIconTrash2"></tui-svg>
+                </button>
+              </tui-opt-group>
+              <tui-opt-group>
+                <button tuiOption (click)="isOpenPassDialog = true">
+                  Изменить пароль
+                  <tui-svg src="tuiIconLock"></tui-svg>
+                </button>
+                <button tuiOption>
+                  Списать долг
+                  <tui-svg src="tuiIconDollarSign"></tui-svg>
+                </button>
+                <button tuiOption (click)="isOpenFailDialog = true">
+                  Добавить штраф
+                  <tui-svg src="tuiIconCreditCard"></tui-svg>
+                </button>
+              </tui-opt-group>
+              <tui-opt-group>
+                <button tuiOption>Просмотреть оплаты</button>
+                <button tuiOption>Просмотреть книги на руках</button>
+                <button tuiOption>Просмотреть историю книг</button>
+              </tui-opt-group>
+            </tui-data-list>
+          </ng-template>
         </td>
       </tr>
     </tbody>
   </table>
 </tui-scrollbar>
+
+<ng-template
+  let-observer
+  [tuiDialogOptions]="{
+    label: 'Добавить штраф абоненту',
+    size: 's'
+  }"
+  [(tuiDialog)]="isOpenFailDialog"
+>
+  <form>
+    <div class="tui-form__row">
+      <tui-input-number
+        tuiAutoFocus
+        name="example1"
+        [tuiTextfieldPostfix]="'RUB' | tuiCurrency"
+      >
+        Сумма штрафа
+      </tui-input-number>
+    </div>
+
+    <div class="tui-form__buttons tui-form__buttons_align_end">
+      <button tuiButton type="submit" (click)="isOpenFailDialog = false">
+        Добавить штраф
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template
+  let-observer
+  [tuiDialogOptions]="{
+    label: 'Изменить пароль для абонента',
+    size: 's'
+  }"
+  [(tuiDialog)]="isOpenPassDialog"
+>
+  <form>
+    <div class="tui-form__row">
+      <tui-input-password tuiAutoFocus name="example1">
+        Новый пароль
+      </tui-input-password>
+    </div>
+
+    <div class="tui-form__buttons tui-form__buttons_align_end">
+      <button tuiButton type="submit" (click)="isOpenPassDialog = false">
+        Изменить пароль
+      </button>
+    </div>
+  </form>
+</ng-template>

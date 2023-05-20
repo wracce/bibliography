@@ -11,3 +11,14 @@
   @include shadow(1);
 
 }
+
+.left-group,.right-group{
+  display: flex;
+  align-items: center;
+  // gap: 1rem;
+  justify-content: space-between;
+}
+
+.router-link-active{
+  border: 2px solid var(--tui-secondary);
+}

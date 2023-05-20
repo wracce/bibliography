@@ -30,6 +30,7 @@ export class AuthorListComponent implements OnInit {
 
   readonly columns = [
     'id',
+    'index',
     'firstName',
     'lastName',
     'middleName',
@@ -39,8 +40,12 @@ export class AuthorListComponent implements OnInit {
   ];
 
   save(item: Author) {
-    if (item.id === undefined) this.authorService.add(item);
-    else this.authorService.update(item);
+    this.authorService.add(item);
+    this.changedItems.delete(item);
+  }
+
+  update(item: Author) {
+    this.authorService.update(item);
     this.changedItems.delete(item);
   }
 

@@ -2,4 +2,11 @@
   "cSpell.words": [
     "Userform"
   ],
+  "scss-scan.customPaths": [
+    "node_modules/@taiga-ui/core/styles/taiga-ui-local.scss"
+  ],
+  "htmlScss.globalStyles": [
+    "node_modules/@taiga-ui/core/styles/taiga-ui-local.scss"
+  ],
+  "html-css-class-completion.enableScssFindUsage": true,
 }

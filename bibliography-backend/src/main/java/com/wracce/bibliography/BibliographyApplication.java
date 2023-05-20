@@ -1,8 +1,6 @@
 package com.wracce.bibliography;
 
 import com.wracce.bibliography.security.auth.AuthenticationService;
-import com.wracce.bibliography.security.auth.RegisterRequest;
-import com.wracce.bibliography.security.user.Role;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

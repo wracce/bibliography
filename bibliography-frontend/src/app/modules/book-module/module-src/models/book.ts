@@ -11,6 +11,7 @@ export class Book {
     editionYear?:number;
     isbn?:string;
     pageCount?:number;
+
     instanceCount?:number;
     issuedCount?:number;
     publisher?:Publisher;

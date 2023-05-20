@@ -24,7 +24,8 @@ export class PublisherService {
 
   add(publisher: Publisher) {
     this.publisherClientService.create(publisher).subscribe({
-      next: () => {
+      next: (p) => {
+        publisher.id = p.id;
         this.addEmptyItem();
         console.log('Успешно добавлено');
       },

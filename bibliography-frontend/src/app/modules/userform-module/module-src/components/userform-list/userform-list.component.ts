@@ -14,11 +14,14 @@ import {
   styleUrls: ['./userForm-list.component.scss'],
 })
 export class UserFormListComponent implements OnInit {
-
+  isOpenFailDialog = false;
+  isOpenPassDialog = false;
   private changedItems = new Set<UserForm>();
+
 
   readonly columns = [
     'id',
+    'index',
     'userLogin',
     'firstName',
     'lastName',
@@ -50,25 +53,31 @@ export class UserFormListComponent implements OnInit {
     this.changedItems.add(userForm);
   }
 
-  constructor(public userFormService: UserFormService) {
-
-  }
+  constructor(public userFormService: UserFormService) {}
 
   ngOnInit(): void {
     this.userFormService.receiveData();
   }
 
   save(item: UserForm) {
-    if (item.id === undefined) this.userFormService.add(item);
-    else this.userFormService.update(item);
+    this.userFormService.add(item);
+    this.changedItems.delete(item);
+  }
+
+  update(item: UserForm) {
+    this.userFormService.update(item);
     this.changedItems.delete(item);
   }
 
   delete(item: UserForm) {
     if (item.id !== undefined) this.userFormService.delete(item.id);
+
   }
 
-  getGenderName(gender: GenderType|undefined) {
-    return this.genders.find(e=>gender?.toString() == e.value.toString())?.name || "";
+  getGenderName(gender: GenderType | undefined) {
+    return (
+      this.genders.find((e) => gender?.toString() == e.value.toString())
+        ?.name || ''
+    );
   }
 }

@@ -1,1 +1,69 @@
-<p>library-user-page works!</p>
+<div class="container tui-container_adaptive">
+  <div class="tui-row">
+    <div class="tui-col-offset_1 tui-col_3 left-group__col">
+      <tui-island textAlign="center" class="left-group__island">
+        <div class="left-group__wrapper tui-island__content">
+          <div class="left-group__content">
+            <div class="div">
+              <figure class="tui-island__figure">
+                <tui-avatar
+                  new
+                  [text]="userForm?.lastName + ' ' + userForm?.firstName + ' ' + userForm?.middleName"
+                  size="xxl"
+                  [rounded]="true"
+                  [autoColor]="true"
+                ></tui-avatar>
+              </figure>
+              <h3 class="tui-island__title">{{userForm?.lastName + " " + userForm?.firstName + " " + userForm?.middleName}}</h3>
+              <p class="left-group__paragraph tui-island__paragraph">
+                <strong>email: </strong>{{userForm?.email}}<br>
+                <strong>телефон :</strong>{{userForm?.phoneNumber||''| tuiFormatPhone}}<br>
+                <strong>Пол: </strong>{{userForm?.genderType==GenderType.MALE?'Мужской':'Женский'}}<br>
+                <strong>Дата рождения: </strong>{{userForm?.birthday}}<br>
+
+
+              </p>
+            </div>
+            <!-- <div class="left-group__spacer"></div> -->
+            <button
+              tuiButton
+              type="button"
+              size="m"
+              class="left-group__footer-button tui-island__footer-button"
+            >
+              Редактировать
+            </button>
+          </div>
+        </div>
+      </tui-island>
+      <div class="cost-block">
+        <h3 class="tui-text_h6">
+          Долг: <span class="tui-text_body-m cost-block__end">{{userForm?.debt}} {{ 'RUB' | tuiCurrency }}</span>
+        </h3>
+      </div>
+    </div>
+
+    <div class="tui-col_7 right-group__col">
+        <div class="library tui-text_body-l">
+          <p>
+            <strong>библиотека</strong>: Муниципальное гос библиотека<br />
+            <strong>email</strong>: dsds@gmail.ru<br />
+            <strong>адрес</strong>: Самара, Московское шоссе 34Б<br />
+            <strong>режим работы</strong>: 13:00 - 22:00 каждый день<br />
+          </p>
+        </div>
+        <div class="tabs">
+          <tui-tabs [(activeItemIndex)]="activeItemIndex">
+            <button tuiTab tuiRipple="var(--tui-text-01)" (click)="setHandsTab()">
+              Книги на руках
+            </button>
+            <button tuiTab tuiRipple="var(--tui-text-01)" (click)="setHistoryTab()">История</button>
+          </tui-tabs>
+          <div class="content-tab">
+            <app-book-lending-list [userForm]="userForm"></app-book-lending-list>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+

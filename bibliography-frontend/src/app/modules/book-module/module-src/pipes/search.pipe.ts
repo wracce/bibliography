@@ -17,13 +17,18 @@ export class SearchPipe implements PipeTransform {
   private foundSearch(book: Book, search: string): boolean {
     let answer = false;
     let searchStrings = [
-      '' + book.name
+      '' + book.name + book.id,
+      '' + book.id + book.name
     ];
     search = search.replaceAll(' ', '').trim();
     searchStrings.forEach((str) => {
-      str = str.replaceAll(' ', '').trim();
+      str = str.replaceAll(' ', '').toLowerCase().trim();
       if (str.includes(search)) answer= true;
     });
+    console.log(searchStrings);
+    console.log(search);
+
+
 
     return answer;
   }

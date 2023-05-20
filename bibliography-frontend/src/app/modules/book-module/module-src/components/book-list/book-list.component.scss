@@ -60,6 +60,8 @@ tr:nth-child(even):not(.tr_changed) {
 
 
 .action-btn {
+  width: 100%;
+    display: block;
     @include transition(opacity);
     opacity: 0;
 
@@ -77,4 +79,14 @@ tr:nth-child(even):not(.tr_changed) {
 .select{
   width: 10rem;
   min-width: 10rem;
+}
+
+.tag {
+  @include gradient(#2d96ff, #ff5011, 60deg);
+  color: var(--tui-text-01-night);
+  margin: 0.25rem;
+}
+
+.add-author-btn{
+  background-color: var(--tui-primary);
 }

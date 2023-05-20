@@ -18,16 +18,23 @@ export class SearchPipe implements PipeTransform {
     let answer = false;
     let searchStrings = [
       userForm.userLogin||"",
-      '' + userForm.firstName + userForm.lastName + userForm.middleName,
-      '' + userForm.firstName + userForm.lastName + userForm.middleName,
-      '' + userForm.firstName + userForm.lastName + userForm.middleName,
-      '' + userForm.firstName + userForm.lastName + userForm.middleName,
-      '' + userForm.firstName + userForm.lastName + userForm.middleName,
-      '' + userForm.firstName + userForm.lastName + userForm.middleName,
+      '' + userForm.firstName + userForm.lastName + userForm.middleName + userForm.id,
+      '' + userForm.firstName + userForm.lastName + userForm.middleName + userForm.id,
+      '' + userForm.firstName + userForm.lastName + userForm.middleName + userForm.id,
+      '' + userForm.firstName + userForm.lastName + userForm.middleName + userForm.id,
+      '' + userForm.firstName + userForm.lastName + userForm.middleName + userForm.id,
+      '' + userForm.firstName + userForm.lastName + userForm.middleName + userForm.id,
+
+      '' + userForm.id + userForm.firstName + userForm.lastName + userForm.middleName,
+      '' + userForm.id + userForm.firstName + userForm.lastName + userForm.middleName,
+      '' + userForm.id + userForm.firstName + userForm.lastName + userForm.middleName,
+      '' + userForm.id + userForm.firstName + userForm.lastName + userForm.middleName,
+      '' + userForm.id + userForm.firstName + userForm.lastName + userForm.middleName,
+      '' + userForm.id + userForm.firstName + userForm.lastName + userForm.middleName,
     ];
     search = search.replaceAll(' ', '').trim();
     searchStrings.forEach((str) => {
-      str = str.replaceAll(' ', '').trim();
+      str = str.replaceAll(' ', '').toLowerCase().trim();
       if (str.includes(search)) answer= true;
     });
 

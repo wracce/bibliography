@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./library-manager-page.component.scss']
 })
 export class LibraryManagerPageComponent {
-  open = false
-  open1 = false
+
   activeTabIndex = 0;
 }
