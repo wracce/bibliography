@@ -20,33 +20,37 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(schema = "public")
+@Table(name = "Book", schema = "public", uniqueConstraints = {
+        @UniqueConstraint(name = "uc_book_name_edition", columnNames = {"name", "edition", "editionYear", "publisher_id"})
+})
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String description;
+
+    @Column(nullable = false)
     private String name;
 
     private String edition;
 
     private Integer editionYear;
 
+    @Column(unique = true)
     private String ISBN;
 
     private Integer pageCount;
 
+    @Column(nullable = false)
     private Integer instanceCount;
 
+    @Column(nullable = false)
     private Integer issuedCount;
 
     @ManyToOne
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
-
-//    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
-//    private List<BookReservation> bookReservations = new ArrayList<>();
 
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
     private List<BookLending> bookLendings = new ArrayList<>();

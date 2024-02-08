@@ -24,9 +24,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    private String login;
+    @Column(nullable = false, unique = true)
+    private String username;
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -58,7 +59,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return username;
     }
 
     @Override

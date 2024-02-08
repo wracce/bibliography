@@ -1,12 +1,14 @@
 {
-  "cSpell.words": [
-    "Userform"
-  ],
-  "scss-scan.customPaths": [
-    "node_modules/@taiga-ui/core/styles/taiga-ui-local.scss"
-  ],
-  "htmlScss.globalStyles": [
-    "node_modules/@taiga-ui/core/styles/taiga-ui-local.scss"
-  ],
-  "html-css-class-completion.enableScssFindUsage": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"cSpell.words": ["Userform"],
+	"scss-scan.customPaths": ["node_modules/@taiga-ui/core/styles/taiga-ui-local.scss"],
+	"htmlScss.globalStyles": ["node_modules/@taiga-ui/core/styles/taiga-ui-local.scss"],
+	"html-css-class-completion.enableScssFindUsage": true,
+	"material-icon-theme.folders.associations": {
+		"alert": "event",
+		"storage": "database"
+	},
+	"prettier.insertPragma": false,
+	"prettier.useEditorConfig": false
 }

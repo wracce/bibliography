@@ -74,13 +74,13 @@ export class BookLendingListComponent implements OnInit, OnChanges {
   columns: string[] = [];
 
   isLate(bl: BookLending) {
-    let retDay = new Date(bl.returnDate!);
+    const retDay = new Date(bl.returnDate!);
     let needDay = new Date(retDay);
 
     if (bl.bookReturning != null && bl.bookReturning.returnDate != null) {
       needDay = new Date(bl.bookReturning.returnDate);
     } else {
-      let nowDay = new Date();
+      const nowDay = new Date();
       needDay.setFullYear(nowDay.getFullYear());
       needDay.setMonth(nowDay.getMonth());
       needDay.setDate(nowDay.getDate());

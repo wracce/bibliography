@@ -6,12 +6,12 @@ export class UserForm {
   lastName?: string;
   middleName?: string;
   birthday?: Date;
-  address?: String;
+  address?: string;
   phoneNumber?: string;
   email?: string;
   registrationDate?: Date;
   debt?: number;
   genderType?: GenderType;
-  userLogin?: string;
+  userUsername?: string;
   userId?: number;
 }

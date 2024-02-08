@@ -16,7 +16,7 @@ export class SearchPipe implements PipeTransform {
 
   private foundSearch(bookLoosing: BookLoosing, search: string): boolean {
     let answer = false;
-    let searchStrings = [
+    const searchStrings = [
       bookLoosing.book?.name||''
     ]
     search = search.replaceAll(' ', '').trim();

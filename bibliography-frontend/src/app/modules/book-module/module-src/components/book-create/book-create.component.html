@@ -1,0 +1,155 @@
+<button
+	tuiIconButton
+	shape="rounded"
+	class="flat-button"
+	icon="tuiIconPlus"
+	(click)="
+		bookService.clearForm(); bookService.isOpenDialog = true; bookService.isCreateDialog = true
+	"
+></button>
+
+<ng-template
+	let-observer
+	[tuiDialogOptions]="{
+		label: 'Диалоговое окно книги',
+		size: 's'
+	}"
+	[(tuiDialog)]="bookService.isOpenDialog"
+>
+	<form [formGroup]="form">
+		<div class="tui-form__row">
+			<tui-input formControlName="name">
+				Название
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="description">
+				Описание
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="edition">
+				Издание
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input-number formControlName="editionYear">
+				Год издания
+				<input tuiTextfield />
+			</tui-input-number>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input-number formControlName="pageCount">
+				Кол-во страниц
+				<input tuiTextfield />
+			</tui-input-number>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="isbn">
+				ISBN
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input-number formControlName="instanceCount">
+				Кол-во экземпляров
+				<input tuiTextfield />
+			</tui-input-number>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-select
+				formControlName="publisher"
+				class="textarea"
+				[valueContent]="form.value.publisher?.name || ''"
+				class="select"
+			>
+				Издательство
+				<ng-template tuiDataList>
+					<tui-data-list>
+						<button *ngFor="let publisher of publishers" tuiOption [value]="publisher">
+							{{ publisher.name }}
+						</button>
+					</tui-data-list>
+				</ng-template>
+			</tui-select>
+		</div>
+
+		<div class="tui-form__row">
+			<label tuiLabel="Авторы">
+				<tui-tag
+					*ngFor="let author of arrA; let index = index"
+					size="l"
+					status="custom"
+					class="tag"
+					[value]="author.lastName + ' ' + author.firstName + ' ' + author.middleName"
+					[hoverable]="true"
+					[removable]="true"
+				></tui-tag>
+				<tui-hosted-dropdown [content]="authorsContent">
+					<a tuiTag size="l" status="primary" value="+" [hoverable]="true"></a>
+				</tui-hosted-dropdown>
+				<ng-template #authorsContent>
+					<tui-data-list role="menu">
+						<button tuiOption (click)="isOpenAddAuthorDialog = true" class="add-author-btn">
+							Добавить через идентификатор
+						</button>
+						<button
+							*ngFor="let author of bookService.authors"
+							tuiOption
+							(click)="addAuthor(author)"
+						>
+							{{
+								author.id + ' ' + author.firstName + ' ' + author.lastName + ' ' + author.middleName
+							}}
+						</button>
+					</tui-data-list>
+				</ng-template>
+			</label>
+		</div>
+
+		<div class="tui-form__row">
+			<label tuiLabel="Жанры">
+				<tui-tag
+					*ngFor="let genre of arrG; let index = index"
+					size="l"
+					status="custom"
+					class="tag"
+					[value]="genre.name || ''"
+					[hoverable]="true"
+					[removable]="true"
+				></tui-tag>
+				<tui-hosted-dropdown [content]="genresContent">
+					<a tuiTag size="l" status="primary" value="+" [hoverable]="true"></a>
+				</tui-hosted-dropdown>
+				<ng-template #genresContent>
+					<tui-data-list role="menu">
+						<button *ngFor="let genre of bookService.genres" tuiOption (click)="addGenre(genre)">
+							{{ genre.name }}
+						</button>
+					</tui-data-list>
+				</ng-template>
+			</label>
+		</div>
+
+		<div class="tui-form__buttons tui-form__buttons_align_end">
+			<button
+				tuiButton
+				type="submit"
+				(click)="bookService.isCreateDialog ? create() : update()"
+				icon="tuiIconSave"
+			>
+				{{ bookService.isCreateDialog ? 'Создать' : 'Редактировать' }}
+			</button>
+		</div>
+	</form>
+</ng-template>

@@ -1,0 +1,68 @@
+<button
+	tuiIconButton
+	shape="rounded"
+	class="flat-button"
+	icon="tuiIconPlus"
+	(click)="
+		authorService.clearForm();
+		authorService.isOpenDialog = true;
+		authorService.isCreateDialog = true
+	"
+></button>
+
+<ng-template
+	let-observer
+	[tuiDialogOptions]="{
+		label: 'Диалоговое окно автора',
+		size: 's'
+	}"
+	[(tuiDialog)]="authorService.isOpenDialog"
+>
+	<form [formGroup]="form">
+		<div class="tui-form__row">
+			<tui-input formControlName="firstName">
+				Имя
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="lastName">
+				Фамилия
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="middleName">
+				Отчество
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="country">
+				Страна
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input-date toNativeDate class="textarea" formControlName="birthday"
+				>Дата рождения</tui-input-date
+			>
+		</div>
+
+		<div class="tui-form__buttons tui-form__buttons_align_end">
+			<button
+				tuiButton
+				type="submit"
+				(click)="authorService.isCreateDialog ? create() : update()"
+				[disabled]="form.invalid"
+				icon="tuiIconSave"
+			>
+				{{ authorService.isCreateDialog ? 'Создать' : 'Редактировать' }}
+			</button>
+		</div>
+	</form>
+</ng-template>

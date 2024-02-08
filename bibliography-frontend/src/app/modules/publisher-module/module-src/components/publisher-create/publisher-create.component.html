@@ -1,0 +1,61 @@
+<button
+	tuiIconButton
+	shape="rounded"
+	class="flat-button"
+	icon="tuiIconPlus"
+	(click)="
+		publisherService.clearForm();
+		publisherService.isOpenDialog = true;
+		publisherService.isCreateDialog = true
+	"
+></button>
+
+<ng-template
+	let-observer
+	[tuiDialogOptions]="{
+		label: 'Диалоговое окно издательства',
+		size: 's'
+	}"
+	[(tuiDialog)]="publisherService.isOpenDialog"
+>
+	<form [formGroup]="form">
+		<div class="tui-form__row">
+			<tui-input formControlName="name">
+				Название
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="address">
+				Адрес
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input-phone formControlName="phoneNumber">
+				Номер телефона
+				<input tuiTextfield autocomplete="tel"
+			/></tui-input-phone>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="email">
+				Email
+				<input tuiTextfield type="email"
+			/></tui-input>
+		</div>
+
+		<div class="tui-form__buttons tui-form__buttons_align_end">
+			<button
+				tuiButton
+				icon="tuiIconSave"
+				(click)="publisherService.isCreateDialog ? create() : update()"
+				[disabled]="form.invalid"
+			>
+				{{ publisherService.isCreateDialog ? 'Создать' : 'Редактировать' }}
+			</button>
+		</div>
+	</form>
+</ng-template>

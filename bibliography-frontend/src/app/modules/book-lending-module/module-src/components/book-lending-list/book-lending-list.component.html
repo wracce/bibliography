@@ -118,7 +118,7 @@
             icon="tuiIconBook"
             size="s"
             *ngIf="
-              item.bookReturning != null &&
+              item.bookReturning == null ||
               item.bookReturning.returnDate == null
             "
           >Получить</button>

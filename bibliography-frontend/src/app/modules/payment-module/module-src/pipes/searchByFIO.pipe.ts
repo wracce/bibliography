@@ -16,7 +16,7 @@ export class SearchPipeByFIO implements PipeTransform {
 
   private foundSearch(payment: Payment, search: string): boolean {
     let answer = false;
-    let searchStrings = [
+    const searchStrings = [
       '' + payment.userForm?.firstName + payment.userForm?.lastName + payment.userForm?.middleName + payment.userForm?.id,
       '' + payment.userForm?.firstName + payment.userForm?.lastName + payment.userForm?.middleName + payment.userForm?.id,
       '' + payment.userForm?.firstName + payment.userForm?.lastName + payment.userForm?.middleName + payment.userForm?.id,

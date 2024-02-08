@@ -6,11 +6,11 @@ import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserFormMapper {
-    @Mapping(source = "userLogin", target = "user.login")
+    @Mapping(source = "userUsername", target = "user.username")
     @Mapping(source = "userId", target = "user.id")
     UserForm toEntity(UserFormDto userFormDto);
 
-    @Mapping(source = "user.login", target = "userLogin")
+    @Mapping(source = "user.username", target = "userUsername")
     @Mapping(source = "user.id", target = "userId")
     UserFormDto toDto(UserForm userForm);
 

@@ -21,16 +21,18 @@ public class BookLending {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
-    @ManyToOne
-    @JoinColumn(name = "user_form_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_form_id", nullable = false)
     private UserForm userForm;
 
+    @Column(nullable = false)
     private LocalDate lendingDate;
 
+    @Column(nullable = false)
     private LocalDate returnDate;
 
     @OneToOne(orphanRemoval = true,cascade = {CascadeType.PERSIST,CascadeType.MERGE})

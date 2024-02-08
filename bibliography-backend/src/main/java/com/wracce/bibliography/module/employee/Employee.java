@@ -19,12 +19,8 @@ public class Employee {
     private Long id;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "library_id")
-    private Library library;
 
 }

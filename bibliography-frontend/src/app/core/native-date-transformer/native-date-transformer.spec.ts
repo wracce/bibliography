@@ -1,8 +1,8 @@
-import { ToNativeDateDirective } from './native-date-transformer.directive';
+import { ExampleNativeDateTransformerDirective } from './native-date-transformer.directive'
 
-describe('ToNativeDateDirective', () => {
-  it('should create an instance', () => {
-    const directive = new ToNativeDateDirective();
-    expect(directive).toBeTruthy();
-  });
-});
+describe('ExampleNativeDateTransformerDirective', () => {
+	it('should create an instance', () => {
+		const directive = new ExampleNativeDateTransformerDirective()
+		expect(directive).toBeTruthy()
+	})
+})

@@ -1,7 +1,7 @@
-import { ErrorMessange } from './error-message';
+import { ErrorMessage } from './error-message'
 
-describe('ErrorMessange', () => {
-  it('should create an instance', () => {
-    expect(new ErrorMessange()).toBeTruthy();
-  });
-});
+describe('ErrorMessage', () => {
+	it('should create an instance', () => {
+		expect(new ErrorMessage()).toBeTruthy()
+	})
+})

@@ -22,8 +22,10 @@ public class BookReturning {
     @OneToOne(mappedBy = "bookReturning")
     private BookLending bookLending;
 
+    @Column(nullable = false)
     private LocalDate returnDate;
 
+    @Column(nullable = false)
     private Double fineAmount;
 
 

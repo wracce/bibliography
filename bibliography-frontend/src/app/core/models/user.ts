@@ -4,6 +4,7 @@ import { UserForm } from "./user-form";
 export class User {
   username?: string;
   password?: string;
-  token?: string;
+  access_token?: string;
+  refresh_token?: string;
   role?: Role
 }

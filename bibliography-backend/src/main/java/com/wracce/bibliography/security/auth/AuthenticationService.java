@@ -34,7 +34,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = User.builder().login(request.getLogin()).password(passwordEncoder.encode(request.getPassword())).role(Role.USER).build();
+        var user = User.builder().username(request.getUsername()).password(passwordEncoder.encode(request.getPassword())).role(Role.USER).build();
         var userForm = request.getUserForm();
         userForm.setDebt(0);
         userForm.setRegistrationDate(LocalDate.now());
@@ -45,20 +45,21 @@ public class AuthenticationService {
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
         return AuthenticationResponse.builder().accessToken(jwtToken)
-//            .refreshToken(refreshToken)
+            .refreshToken(refreshToken)
                 .role(user.getRole()).build();
     }
+
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
 
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword()));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         } catch (
                 AuthenticationException ex
         ) {
-            throw new AuthUserNotValidException("wrong login or password");
+            throw new AuthUserNotValidException("wrong username or password");
         }
-        var user = repository.findByLogin(request.getLogin()).orElseThrow();
+        var user = repository.findByUsername(request.getUsername()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
@@ -66,7 +67,7 @@ public class AuthenticationService {
 
 
         return AuthenticationResponse.builder().accessToken(jwtToken)
-//            .refreshToken(refreshToken)
+            .refreshToken(refreshToken)
                 .role(user.getRole()).build();
     }
 
@@ -95,13 +96,14 @@ public class AuthenticationService {
         refreshToken = authHeader.substring(7);
         userEmail = jwtService.extractUsername(refreshToken);
         if (userEmail != null) {
-            var user = this.repository.findByLogin(userEmail).orElseThrow();
+            var user = this.repository.findByUsername(userEmail).orElseThrow();
             if (jwtService.isTokenValid(refreshToken, user)) {
                 var accessToken = jwtService.generateToken(user);
                 revokeAllUserTokens(user);
                 saveUserToken(user, accessToken);
                 var authResponse = AuthenticationResponse.builder().accessToken(accessToken)
-//                .refreshToken(refreshToken)
+                .refreshToken(refreshToken)
+                        .role(user.getRole())
                         .build();
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }

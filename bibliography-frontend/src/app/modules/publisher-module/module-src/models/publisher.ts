@@ -1,7 +1,7 @@
 export class Publisher {
-  id?:number;
-  name?:string;
-  address?:string;
-  phoneNumber?:string;
-  email?:string;
+	id?: number
+	name?: string
+	address?: string
+	phoneNumber?: string
+	email?: string
 }

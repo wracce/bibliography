@@ -22,26 +22,26 @@ public class Library {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     public String name;
 
+    @Column(unique = true)
     public String address;
 
+    @Column(unique = true)
     public String phone;
 
+    @Column(unique = true)
     public String email;
 
     public String dateWork;
 
 
+    @Column(nullable = false)
     public Integer fineCost;
 
+    @Column(nullable = false)
     public Integer fineDaysCount;
-
-    @OneToMany(mappedBy = "library", orphanRemoval = true)
-    private List<UserForm> userForms = new ArrayList<>();
-
-    @OneToMany(mappedBy = "library", orphanRemoval = true)
-    private List<Employee> employees = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")

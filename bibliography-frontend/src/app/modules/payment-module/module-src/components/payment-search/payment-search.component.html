@@ -1,13 +1,13 @@
 <tui-badged-content
   [contentTop]="0"
-  [colorTop]="paymentService.search.trim() != '' ? 'var(--tui-error-fill)' : ''"
+  [colorTop]="paymentService.search.trim() !== '' ? 'var(--tui-error-fill)' : ''"
   class="input"
   ><tui-input [(ngModel)]="search"> Поиск по названию или идентификатору</tui-input>
 </tui-badged-content>
 
 <tui-badged-content
   [contentTop]="0"
-  [colorTop]="paymentService.searchFIO.trim() != '' ? 'var(--tui-error-fill)' : ''"
+  [colorTop]="paymentService.searchFIO.trim() !== '' ? 'var(--tui-error-fill)' : ''"
   class="input"
   ><tui-input [(ngModel)]="searchFIO"> Поиск по ФИО или идентификатору </tui-input>
 </tui-badged-content>

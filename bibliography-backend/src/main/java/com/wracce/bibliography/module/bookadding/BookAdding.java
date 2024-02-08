@@ -22,10 +22,13 @@ public class BookAdding {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    @Column(nullable = false)
     private Integer amount;
 
+    @Column(nullable = false)
     private String reason;
 
+    @Column(nullable = false)
     private LocalDate date;
 
 }

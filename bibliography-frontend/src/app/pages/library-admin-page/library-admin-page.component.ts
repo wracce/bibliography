@@ -1,67 +1,70 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { FormControl } from '@angular/forms'
 
 export class Employee {
-  id?: number;
-  login?: string;
-  password?: string;
-  createDate?: Date;
+	id?: number
+	username?: string
+	password?: string
+	createDate?: Date
 }
 
 @Component({
-  selector: 'app-library-user-page',
-  templateUrl: './library-admin-page.component.html',
-  styleUrls: ['./library-admin-page.component.scss'],
+	selector: 'app-library-user-page',
+	templateUrl: './library-admin-page.component.html',
+	styleUrls: ['./library-admin-page.component.scss'],
 })
 export class LibraryAdminPageComponent {
-  login = '';
-  password = '';
+	username = ''
+	password = ''
 
-  name = 'Библиотека имени Ленина';
-  phone = '+79271456387';
-  email = 'bestlibrary@ya.ru';
-  address = 'пр-т. Ленина, 14А, Самара, Самарская обл., 443110';
-  workDate = 'Каждый день с 10:00 до 18:00';
-  days = 30;
-  cost = 120;
+	name = 'Муниципальное гос библиотека'
+	phone = new FormControl('+79271456387')
+	email = 'dsds@gmail.ru'
+	address = 'Самара, Ленина 14А'
+	workDate = '13:00 - 22:00 каждый день'
+	days = new FormControl(130)
+	cost = new FormControl(120)
 
-  data: Employee[] = [{ createDate: new Date(), id: 1, login: 'manager' }];
-  private changedItems = new Set<Employee>();
+	data: Employee[] = [{ createDate: new Date(), id: 1, username: 'manager' }]
+	private changedItems = new Set<Employee>()
 
-  isChangeItem(emp: Employee) {
-    return this.changedItems.has(emp);
-  }
+	isChangeItem(emp: Employee) {
+		return this.changedItems.has(emp)
+	}
 
-  onValueChange(emp: Employee) {
-    this.changedItems.add(emp);
-  }
+	onValueChange(emp: Employee) {
+		this.changedItems.add(emp)
+	}
 
-  readonly columns = ['id', 'login', 'createDate', 'actions'];
-  isOpenPassDialog = false;
-  isOpenAddEmpDialog = false;
-  isOpenPassAdminDialog = false;
+	readonly columns = ['id', 'username', 'createDate', 'actions']
+	isOpenPassDialog = false
+	isOpenAddEmpDialog = false
+	isOpenPassAdminDialog = false
 
-  constructor() {}
+	constructor() {}
 
-  addEmp() {
-    let emp = new Employee();
-    emp.id = this.data.length;
-    emp.createDate = new Date();
-    this.data.push(emp);
-    this.isOpenAddEmpDialog = false;
-    this.login = '';
-    this.password = '';
-  }
+	addEmp() {
+		const emp = new Employee()
+		emp.id = this.data.length
+		emp.createDate = new Date()
+		this.data.push(emp)
+		setTimeout(() => {
+			this.isOpenAddEmpDialog = false
+		}, 0)
+		this.username = ''
+		this.password = ''
+	}
 
-  save(emp: Employee) {
-    this.changedItems.delete(emp);
-  }
+	save(emp: Employee) {
+		this.changedItems.delete(emp)
+	}
 
-  update(emp: Employee) {
-    this.changedItems.delete(emp);
-  }
+	update(emp: Employee) {
+		this.changedItems.delete(emp)
+	}
 
-  delete(emp: Employee) {
-    this.data = this.data.filter((val) => val !== emp);
-  }
+	delete(emp: Employee) {
+		this.data = this.data.filter((val) => val !== emp)
+	}
 }

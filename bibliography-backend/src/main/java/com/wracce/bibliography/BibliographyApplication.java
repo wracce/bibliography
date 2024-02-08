@@ -19,14 +19,14 @@ public class BibliographyApplication {
 	) {
 		return args -> {
 //			var admin = RegisterRequest.builder()
-//					.login("admin")
-//					.password("password")
+//					.username("admin")
+//					.username("password")
 //					.role(Role.ADMIN)
 //					.build();
 //			System.out.println("Admin token: " + service.register(admin).getAccessToken());
 //
 //			var manager = RegisterRequest.builder()
-//					.login("manager")
+//					.username("manager")
 //					.password("password")
 //					.role(Role.MANAGER)
 //					.build();

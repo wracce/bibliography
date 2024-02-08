@@ -21,7 +21,7 @@ export class LibraryUserPageComponent implements OnInit {
   this.bookLendingService.searchOnlyHands = true;
   }
   userForm?: UserForm;
-  login?: string;
+  username?: string;
 
   activeItemIndex = 0;
 
@@ -34,14 +34,14 @@ export class LibraryUserPageComponent implements OnInit {
     private bookLendingService: BookLendingService
   ) {}
   ngOnInit(): void {
-    this.login = this.sessionService.username;
+    this.username = this.sessionService.username;
     this.receiveUserForm();
     this.activeItemIndex = 0;
     this.setHandsTab();
   }
 
   receiveUserForm() {
-    this.httpClient.get(`${BASE_URL}/${this.login}`).subscribe((u) => {
+    this.httpClient.get(`${BASE_URL}/${this.username}`).subscribe((u) => {
       this.userForm = u;
     });
   }

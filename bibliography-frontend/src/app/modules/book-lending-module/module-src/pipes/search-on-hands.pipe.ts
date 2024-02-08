@@ -8,9 +8,11 @@ import { BookLending } from 'src/app/modules/book-lending-module/module-src/mode
 export class SearchOnHandsPipe implements PipeTransform {
 
   transform(bookLendings: BookLending[], search: boolean | null): BookLending[] {
-    if (search)
-    return bookLendings.filter((b) => b.bookReturning != null && b.bookReturning.returnDate == null );
-    else if (search === null)
+    console.log(search);
+
+    if (search===true)
+    return bookLendings.filter((b) => b.bookReturning == null || b.bookReturning?.returnDate == null );
+    else if (search == null)
     return bookLendings.filter((b) => b.bookReturning != null && b.bookReturning.returnDate != null );
     else
     return bookLendings;

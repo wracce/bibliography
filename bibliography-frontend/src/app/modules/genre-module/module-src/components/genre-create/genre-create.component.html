@@ -1,0 +1,44 @@
+<button
+	tuiIconButton
+	shape="rounded"
+	class="flat-button"
+	icon="tuiIconPlus"
+	(click)="
+		genreService.clearForm(); genreService.isOpenDialog = true; genreService.isCreateDialog = true
+	"
+></button>
+
+<ng-template
+	let-observer
+	[tuiDialogOptions]="{
+		label: 'Диалоговое окно жанра',
+		size: 's'
+	}"
+	[(tuiDialog)]="genreService.isOpenDialog"
+>
+	<form [formGroup]="form">
+		<div class="tui-form__row">
+			<tui-input formControlName="name">
+				Название
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-text-area formControlName="description"> Описание </tui-text-area>
+		</div>
+
+		<div class="tui-form__buttons tui-form__buttons_align_end">
+			<button
+				tuiButton
+				type="submit"
+				(click)="genreService.isCreateDialog ? create() : update()"
+				dis
+				icon="tuiIconSave"
+				[disabled]="form.invalid"
+			>
+				{{ genreService.isCreateDialog ? 'Создать' : 'Редактировать' }}
+			</button>
+		</div>
+	</form>
+</ng-template>

@@ -22,10 +22,13 @@ public class BookLoosing {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    @Column(nullable = false)
     public Integer amount;
 
+    @Column(nullable = false)
     private String reason;
 
+    @Column(nullable = false)
     private LocalDate date;
 
 }

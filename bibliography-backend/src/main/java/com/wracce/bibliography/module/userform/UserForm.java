@@ -24,28 +24,37 @@ public class UserForm {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false)
     private String middleName;
 
+    @Column(nullable = false)
     private LocalDate birthday;
 
+    @Column(nullable = false)
     private String address;
 
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
 
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private LocalDate registrationDate;
 
+    @Column(nullable = false, updatable = false)
     private Integer debt;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "gender_type")
+    @Column(name = "gender_type", nullable = false)
     private GenderType genderType;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "user_id", updatable = false)
     private User user;
 
 //    @OneToMany(mappedBy = "userForm", fetch = FetchType.LAZY)
@@ -57,9 +66,5 @@ public class UserForm {
 
     @OneToMany(mappedBy = "userForm")
     private List<Payment> payments = new ArrayList<>();
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "library_id")
-    private Library library;
 
 }

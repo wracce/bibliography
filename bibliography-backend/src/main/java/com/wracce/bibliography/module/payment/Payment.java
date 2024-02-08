@@ -27,6 +27,7 @@ public class Payment {
     @JoinColumn(name = "user_form_id")
     private UserForm userForm;
 
+    @Column(nullable = false)
     private Double cost;
 
     private LocalDate date;

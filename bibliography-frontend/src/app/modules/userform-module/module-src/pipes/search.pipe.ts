@@ -16,8 +16,8 @@ export class SearchPipe implements PipeTransform {
 
   private foundSearch(userForm: UserForm, search: string): boolean {
     let answer = false;
-    let searchStrings = [
-      userForm.userLogin||"",
+    const searchStrings = [
+      userForm.userUsername||"",
       '' + userForm.firstName + userForm.lastName + userForm.middleName + userForm.id,
       '' + userForm.firstName + userForm.lastName + userForm.middleName + userForm.id,
       '' + userForm.firstName + userForm.lastName + userForm.middleName + userForm.id,

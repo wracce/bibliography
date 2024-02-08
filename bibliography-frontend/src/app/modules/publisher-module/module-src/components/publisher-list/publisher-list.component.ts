@@ -1,52 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { PublisherService } from '../../services/publisher.service';
-import { Publisher } from '../../models/publisher';
+import { Component, OnInit } from '@angular/core'
+import { PublisherService } from '../../services/publisher.service'
+import { Publisher } from '../../models/publisher'
 
 @Component({
-  selector: 'app-publisher-list',
-  templateUrl: './publisher-list.component.html',
-  styleUrls: ['./publisher-list.component.scss'],
+	selector: 'app-publisher-list',
+	templateUrl: './publisher-list.component.html',
+	styleUrls: ['./publisher-list.component.scss'],
 })
 export class PublisherListComponent implements OnInit {
-  private changedItems = new Set<Publisher>();
+	private changedItems = new Set<Publisher>()
 
-  isChangeItem(publisher: Publisher) {
-    return this.changedItems.has(publisher);
-  }
+	isChangeItem(publisher: Publisher) {
+		return this.changedItems.has(publisher)
+	}
 
-  onValueChange(publisher: Publisher) {
-    this.changedItems.add(publisher);
-  }
+	onValueChange(publisher: Publisher) {
+		this.changedItems.add(publisher)
+	}
 
-  constructor(public publisherService: PublisherService) {}
+	constructor(public publisherService: PublisherService) {}
 
-  ngOnInit(): void {
-    this.publisherService.receiveData();
-  }
+	ngOnInit(): void {
+		this.publisherService.receiveData()
+	}
 
-  get data(): Publisher[] {
-    return this.publisherService.list;
-  }
+	get data(): Publisher[] {
+		return this.publisherService.list
+	}
 
-  readonly columns = [
-    'id',
-    'name',
-    'address',
-    'phoneNumber',
-    'email',
-    'actions',
-  ];
-  save(item: Publisher) {
-    this.publisherService.add(item);
-    this.changedItems.delete(item);
-  }
+	readonly columns = ['id', 'name', 'address', 'phoneNumber', 'email', 'actions']
+	save(item: Publisher) {
+		this.publisherService.clearForm()
+		this.publisherService.add(item)
+		this.changedItems.delete(item)
+	}
 
-  update(item: Publisher) {
-    this.publisherService.update(item);
-    this.changedItems.delete(item);
-  }
+	update(item: Publisher) {
+		this.publisherService.objectToForm(item)
+		this.publisherService.isOpenDialog = true
+		this.publisherService.isCreateDialog = false
+	}
 
-  delete(item: Publisher) {
-    if (item.id !== undefined) this.publisherService.delete(item.id);
-  }
+	delete(item: Publisher) {
+		if (item.id !== undefined) this.publisherService.delete(item.id)
+	}
 }

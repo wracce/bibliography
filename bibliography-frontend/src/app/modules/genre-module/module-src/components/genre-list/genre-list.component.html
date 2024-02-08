@@ -1,76 +1,68 @@
 <tui-scrollbar waIntersectionRoot [hidden]="true">
-<table tuiTable class="table" [columns]="columns">
-  <thead class="">
-    <tr tuiThGroup>
-      <th tuiTh *tuiHead="'id'">№</th>
-      <th tuiTh *tuiHead="'name'">Название</th>
-      <th tuiTh *tuiHead="'desc'">Описание</th>
-      <th tuiTh *tuiHead="'actions'" [sorter]="null"></th>
-    </tr>
-  </thead>
-  <tbody tuiTbody [data]="data">
-    <tr
-      *ngFor="let item of data | search : genreService.search; let i = index"
-      tuiTr
-      [class.tr_changed]="isChangeItem(item)"
-    >
-      <td *tuiCell="'id'" tuiTd>{{ item.id != undefined?i + 1:''}}</td>
+	<table tuiTable class="table" [columns]="columns">
+		<thead class="">
+			<tr tuiThGroup>
+				<th tuiTh *tuiHead="'id'">№</th>
+				<th tuiTh *tuiHead="'name'">Название</th>
+				<th tuiTh *tuiHead="'desc'">Описание</th>
+				<th tuiTh *tuiHead="'actions'" [sorter]="null"></th>
+			</tr>
+		</thead>
+		<tbody tuiTbody [data]="data">
+			<tr
+				*ngFor="let item of data | search : genreService.search; let i = index"
+				tuiTr
+				[class.tr_changed]="isChangeItem(item)"
+			>
+				<td *tuiCell="'id'" tuiTd>{{ item.id != undefined ? i + 1 : '' }}</td>
 
-      <td *tuiCell="'name'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [(ngModel)]="item.name"
-          (ngModelChange)="onValueChange(item)"
-        ></tui-text-area>
-      </td>
+				<td *tuiCell="'name'" tuiTd>
+					<tui-text-area
+						class="textarea"
+						[expandable]="true"
+						[(ngModel)]="item.name"
+						(ngModelChange)="onValueChange(item)"
+					></tui-text-area>
+				</td>
 
-      <td *tuiCell="'desc'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [(ngModel)]="item.description"
-          (ngModelChange)="onValueChange(item)"
-        ></tui-text-area>
-      </td>
+				<td *tuiCell="'desc'" tuiTd>
+					<tui-text-area
+						class="textarea"
+						[expandable]="true"
+						[(ngModel)]="item.description"
+						(ngModelChange)="onValueChange(item)"
+					></tui-text-area>
+				</td>
 
-      <td *tuiCell="'actions'" tuiTd class="actions">
-        <button
-          tuiIconButton
-          size="s"
-          appearance="primary"
-          icon="tuiIconSave"
-          *ngIf="item.id == undefined"
-          (click)="save(item)"
-        ></button>
+				<td *tuiCell="'actions'" tuiTd class="actions">
+					<button
+						tuiIconButton
+						size="s"
+						appearance="primary"
+						icon="tuiIconSave"
+						*ngIf="item.id == undefined"
+						(click)="save(item)"
+					></button>
 
-        <tui-hosted-dropdown
-          [content]="actionsContent"
-          *ngIf="item.id !== undefined"
-        >
-          <button
-            tuiIconButton
-            size="s"
-            appearance="accent"
-            icon="tuiIconMoreVertical"
-          ></button>
-        </tui-hosted-dropdown>
-        <ng-template #actionsContent>
-          <tui-data-list role="menu">
-            <tui-opt-group>
-              <button tuiOption (click)="update(item)">
-                Сохранить
-                <tui-svg src="tuiIconSave"></tui-svg>
-              </button>
-              <button tuiOption (click)="delete(item)">
-                Удалить
-                <tui-svg src="tuiIconTrash2"></tui-svg>
-              </button>
-            </tui-opt-group>
-          </tui-data-list>
-        </ng-template>
-      </td>
-    </tr>
-  </tbody>
-</table>
+					<tui-hosted-dropdown [content]="actionsContent" *ngIf="item.id !== undefined">
+						<button tuiIconButton size="s" appearance="accent" icon="tuiIconMoreVertical"></button>
+					</tui-hosted-dropdown>
+					<ng-template #actionsContent>
+						<tui-data-list role="menu">
+							<tui-opt-group>
+								<button tuiOption (click)="update(item)">
+									Редактировать
+									<tui-svg src="tuiIconSave"></tui-svg>
+								</button>
+								<button tuiOption (click)="delete(item)">
+									Удалить
+									<tui-svg src="tuiIconTrash2"></tui-svg>
+								</button>
+							</tui-opt-group>
+						</tui-data-list>
+					</ng-template>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </tui-scrollbar>

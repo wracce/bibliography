@@ -1,59 +1,49 @@
 <nav tuiTabs vertical="left" class="side" [(activeItemIndex)]="activeTabIndex">
-  <tui-scrollbar>
-    <tui-accordion [rounded]="false" [closeOthers]="false" class="accordion">
-      <tui-accordion-item
-        [borders]="null"
-        class="accordion__item"
-        [open]="true"
-      >
-        <strong>Таблицы</strong>
-        <ng-template tuiAccordionItemContent>
-          <button tuiTab class="side__link">Книги</button>
-          <button tuiTab class="side__link">Издательства</button>
-          <button tuiTab class="side__link">Авторы</button>
-          <button tuiTab class="side__link">Жанры</button>
-          <button tuiTab class="side__link">Книги на руках</button>
-          <button tuiTab class="side__link">Формуляры</button>
-        </ng-template>
-      </tui-accordion-item>
-      <tui-accordion-item [borders]="null" class="accordion__item">
-        <strong>Журналы</strong>
-        <ng-template tuiAccordionItemContent>
-          <button tuiTab class="side__link" style="width: 100%">
-            Добавленные книги
-          </button>
-          <button tuiTab class="side__link" style="width: 100%">
-            Удаленные книги
-          </button>
-          <button tuiTab class="side__link" style="width: 100%">Оплаты</button>
-        </ng-template>
-      </tui-accordion-item>
-    </tui-accordion>
-  </tui-scrollbar>
+	<tui-scrollbar>
+		<tui-accordion [rounded]="false" [closeOthers]="false" class="accordion">
+			<tui-accordion-item [borders]="null" class="accordion__item" [open]="true">
+				<strong>Таблицы</strong>
+				<ng-template tuiAccordionItemContent>
+					<button tuiTab class="side__link">Книги</button>
+					<button tuiTab class="side__link">Издательства</button>
+					<button tuiTab class="side__link">Авторы</button>
+					<button tuiTab class="side__link">Жанры</button>
+					<button tuiTab class="side__link">Книги на руках</button>
+					<button tuiTab class="side__link">Формуляры</button>
+				</ng-template>
+			</tui-accordion-item>
+			<tui-accordion-item [borders]="null" class="accordion__item">
+				<strong>Журналы</strong>
+				<ng-template tuiAccordionItemContent>
+					<button tuiTab class="side__link" style="width: 100%">Добавленные книги</button>
+					<button tuiTab class="side__link" style="width: 100%">Удаленные книги</button>
+					<button tuiTab class="side__link" style="width: 100%">Оплаты</button>
+				</ng-template>
+			</tui-accordion-item>
+		</tui-accordion>
+	</tui-scrollbar>
 
-  <div class="space" style="flex: 1 1 auto"></div>
+	<div class="space" style="flex: 1 1 auto"></div>
 </nav>
-
+<!-- <div class="content">
+	<router-outlet name="a"></router-outlet>
+</div> -->
 <div class="content">
-  <app-book-tab *ngIf="activeTabIndex == 0"> </app-book-tab>
+	<app-book-tab *ngIf="activeTabIndex === 0"> </app-book-tab>
 
-  <app-publisher-tab *ngIf="activeTabIndex == 1"> </app-publisher-tab>
+	<app-publisher-tab *ngIf="activeTabIndex === 1"> </app-publisher-tab>
 
-  <app-author-tab *ngIf="activeTabIndex == 2"> </app-author-tab>
+	<app-author-tab *ngIf="activeTabIndex === 2"> </app-author-tab>
 
-  <app-genre-tab *ngIf="activeTabIndex == 3"> </app-genre-tab>
+	<app-genre-tab *ngIf="activeTabIndex === 3"> </app-genre-tab>
 
-  <app-book-lending-journal-tab *ngIf="activeTabIndex == 4">
-  </app-book-lending-journal-tab>
+	<app-book-lending-journal-tab *ngIf="activeTabIndex === 4"> </app-book-lending-journal-tab>
 
-  <app-userform-tab *ngIf="activeTabIndex == 5"> </app-userform-tab>
+	<app-userform-tab *ngIf="activeTabIndex === 5"> </app-userform-tab>
 
-  <app-book-adding-journal-tab *ngIf="activeTabIndex == 6">
-  </app-book-adding-journal-tab>
+	<app-book-adding-journal-tab *ngIf="activeTabIndex === 6"> </app-book-adding-journal-tab>
 
-  <app-book-loosing-journal-tab *ngIf="activeTabIndex == 7">
-  </app-book-loosing-journal-tab>
+	<app-book-loosing-journal-tab *ngIf="activeTabIndex === 7"> </app-book-loosing-journal-tab>
 
-  <app-payment-journal-tab *ngIf="activeTabIndex == 8">
-  </app-payment-journal-tab>
+	<app-payment-journal-tab *ngIf="activeTabIndex === 8"> </app-payment-journal-tab>
 </div>

@@ -44,7 +44,9 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-
+                .requestMatchers(
+                    "**"
+            )            .permitAll()
                 .requestMatchers("/api/v1/genre/**").hasAnyRole(ADMIN.name(), MANAGER.name(), USER.name())
                 .requestMatchers(GET, "/api/v1/genre/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name(), USER_READ.name())
                 .requestMatchers(POST, "/api/v1/genre/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
@@ -80,6 +82,8 @@ public class SecurityConfiguration {
                         "/api/v1/auth/**"
                 )
                 .permitAll()
+
+
 
                 .anyRequest()
                 .authenticated()

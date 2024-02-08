@@ -1,55 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthorService } from '../../services/author.service';
-import { Author } from '../../models/author';
+import { Component, OnInit } from '@angular/core'
+import { AuthorService } from '../../services/author.service'
+import { Author } from '../../models/author'
 
 @Component({
-  selector: 'app-author-list',
-  templateUrl: './author-list.component.html',
-  styleUrls: ['./author-list.component.scss'],
+	selector: 'app-author-list',
+	templateUrl: './author-list.component.html',
+	styleUrls: ['./author-list.component.scss'],
 })
 export class AuthorListComponent implements OnInit {
-  private changedItems = new Set<Author>();
+	private changedItems = new Set<Author>()
 
-  isChangeItem(author: Author) {
-    return this.changedItems.has(author);
-  }
+	isChangeItem(author: Author) {
+		return this.changedItems.has(author)
+	}
 
-  onValueChange(author: Author) {
-    this.changedItems.add(author);
-  }
+	onValueChange(author: Author) {
+		this.changedItems.add(author)
+	}
 
-  constructor(public authorService: AuthorService) {}
+	constructor(public authorService: AuthorService) {}
 
-  ngOnInit(): void {
-    this.authorService.receiveData();
-  }
+	ngOnInit(): void {
+		this.authorService.receiveData()
+	}
 
-  get data(): Author[] {
-    return this.authorService.list;
-  }
+	get data(): Author[] {
+		return this.authorService.list
+	}
 
-  readonly columns = [
-    'id',
-    'index',
-    'firstName',
-    'lastName',
-    'middleName',
-    'country',
-    'birthday',
-    'actions',
-  ];
+	readonly columns = [
+		'id',
+		'index',
+		'firstName',
+		'lastName',
+		'middleName',
+		'country',
+		'birthday',
+		'actions',
+	]
 
-  save(item: Author) {
-    this.authorService.add(item);
-    this.changedItems.delete(item);
-  }
+	save(item: Author) {
+		this.authorService.clearForm()
+		this.authorService.add(item)
+		this.changedItems.delete(item)
+	}
 
-  update(item: Author) {
-    this.authorService.update(item);
-    this.changedItems.delete(item);
-  }
+	update(item: Author) {
+		this.authorService.objectToForm(item)
+		this.authorService.isOpenDialog = true
+		this.authorService.isCreateDialog = false
+	}
 
-  delete(item: Author) {
-    if (item.id !== undefined) this.authorService.delete(item.id);
-  }
+	delete(item: Author) {
+		if (item.id !== undefined) this.authorService.delete(item.id)
+	}
 }

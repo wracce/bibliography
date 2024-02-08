@@ -17,7 +17,7 @@ export class SearchPipe implements PipeTransform {
   private foundSearch(payment: Payment, search: string): boolean {
 
     let answer = false;
-    let searchStrings = [
+    const searchStrings = [
       ''+ payment.book?.name + payment.book?.id,
       ''+ payment.book?.id+ payment.book?.name,
 

@@ -16,7 +16,7 @@ export class SearchPipeByFIO implements PipeTransform {
 
   private foundSearch(bookLending: BookLending, search: string): boolean {
     let answer = false;
-    let searchStrings = [
+    const searchStrings = [
       '' + bookLending.userForm?.firstName + bookLending.userForm?.lastName + bookLending.userForm?.middleName + bookLending.userForm?.id,
       '' + bookLending.userForm?.firstName + bookLending.userForm?.middleName + bookLending.userForm?.lastName + bookLending.userForm?.id,
       '' + bookLending.userForm?.lastName + bookLending.userForm?.firstName + bookLending.userForm?.middleName + bookLending.userForm?.id,

@@ -22,5 +22,5 @@ public class UserFormDto implements Serializable {
     private final Integer debt;
     private final GenderType genderType;
     private final Integer userId;
-    private final String userLogin;
+    private final String userUsername;
 }

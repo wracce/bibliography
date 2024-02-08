@@ -29,7 +29,7 @@ public class UserFormService {
     }
 
     public UserForm findByUsername(String username) {
-        return userFormRepository.findByUser_Login(username);
+        return userFormRepository.findByUser_Username(username);
     }
 
     public void delete(Long id) {

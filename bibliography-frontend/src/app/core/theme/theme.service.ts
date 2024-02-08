@@ -6,7 +6,7 @@ import { CoreModule } from '../core.module';
 })
 export class ThemeService {
   get isDark(): boolean {
-    let str = localStorage.getItem('dark');
+    const str = localStorage.getItem('dark');
 
     return str === 'true' ? true : false;
   }

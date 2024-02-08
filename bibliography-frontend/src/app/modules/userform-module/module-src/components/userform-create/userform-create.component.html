@@ -1,0 +1,128 @@
+<button
+	tuiIconButton
+	shape="rounded"
+	class="flat-button"
+	icon="tuiIconPlus"
+	(click)="
+		userFormService.clearForm();
+		userFormService.isOpenDialog = true;
+		userFormService.isCreateDialog = true
+	"
+></button>
+
+<ng-template
+	let-observer
+	[tuiDialogOptions]="{
+		label: 'Диалоговое окно формуляра',
+		size: 's'
+	}"
+	[(tuiDialog)]="userFormService.isOpenDialog"
+>
+	<form [formGroup]="form">
+		<div class="tui-form__row">
+			<tui-input formControlName="username">
+				Логин
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div
+			class="tui-form__row"
+			*ngIf="userFormService.isOpenDialog && userFormService.isCreateDialog"
+		>
+			<tui-input-password formControlName="password">
+				Пароль
+				<input tuiTextfield />
+			</tui-input-password>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="lastName">
+				Фамилия
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="firstName">
+				Имя
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="middleName">
+				Отчество
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="address">
+				Адрес
+				<input tuiTextfield />
+			</tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input-phone formControlName="phoneNumber">
+				Номер телефона
+				<input tuiTextfield autocomplete="tel"
+			/></tui-input-phone>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input formControlName="email">
+				Email
+				<input tuiTextfield type="email"
+			/></tui-input>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-input-date toNativeDate class="textarea" formControlName="birthday"
+				>Дата рождения</tui-input-date
+			>
+		</div>
+
+		<div class="tui-form__row">
+			<tui-select
+				formControlName="genderType"
+				class="textarea"
+				[valueContent]="getGenderName(this.form.value.genderType!)"
+				class="select"
+			>
+				<ng-template tuiDataList>
+					<tui-data-list>
+						<button *ngFor="let gender of genders" tuiOption [value]="gender.value">
+							{{ gender.name }}
+						</button>
+						<!-- <button
+            tuiOption
+            [value]="GenderType.MALE"
+          >
+            Мужчина
+          </button>
+          <button
+            tuiOption
+            [value]="GenderType.FEMALE"
+          >
+            Жещина
+          </button> -->
+					</tui-data-list>
+				</ng-template>
+			</tui-select>
+		</div>
+
+		<div class="tui-form__buttons tui-form__buttons_align_end">
+			<button
+				tuiButton
+				type="submit"
+				(click)="userFormService.isCreateDialog ? create() : update()"
+				[disabled]="form.invalid"
+				icon="tuiIconSave"
+			>
+				{{ userFormService.isCreateDialog ? 'Создать' : 'Редактировать' }}
+			</button>
+		</div>
+	</form>
+</ng-template>

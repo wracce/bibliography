@@ -1,6 +1,7 @@
 package com.wracce.bibliography.module.author;
 
 import com.wracce.bibliography.module.book.Book;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +14,9 @@ import java.util.*;
 @Getter
 @Setter
 @Entity
-@Table(schema = "public")
+@Table(name = "Author", schema = "public", uniqueConstraints = {
+        @UniqueConstraint(name = "uc_author_firstname_lastname", columnNames = {"firstName", "lastName", "middleName", "country", "birthday"})
+})
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

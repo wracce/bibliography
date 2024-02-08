@@ -11,9 +11,14 @@ import {
 import { ThemeService } from './theme/theme.service';
 import { ExampleNativeDateTransformerDirective } from './native-date-transformer/native-date-transformer.directive';
 import { AuthClientService } from './security/services/auth-client.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { JwtInterceptor } from './security/helpers/jwt.interceptor';
 import { RouterModule } from '@angular/router';
+import { httpInterceptor } from './error/http.interceptor';
 
 @NgModule({
   declarations: [HeaderComponent, ExampleNativeDateTransformerDirective],
@@ -24,9 +29,12 @@ import { RouterModule } from '@angular/router';
     TuiThemeNightModule,
     TuiModeModule,
     TuiLinkModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [HeaderComponent, ExampleNativeDateTransformerDirective],
-  providers:[{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    // provideHttpClient(withInterceptors([httpInterceptor])),
+  ],
 })
 export class CoreModule {}

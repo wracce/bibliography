@@ -1,68 +1,56 @@
 <tui-scrollbar waIntersectionRoot class="content" [hidden]="true">
+	<table tuiTable class="table" [columns]="columns">
+		<thead class="">
+			<tr tuiThGroup>
+				<th tuiTh *tuiHead="'id'">№</th>
+				<th tuiTh *tuiHead="'index'">Идентификатор</th>
+				<th tuiTh *tuiHead="'bookName'">Название</th>
+				<th tuiTh *tuiHead="'amount'">Количество</th>
+				<th tuiTh *tuiHead="'date'">Дата добавления</th>
+				<th tuiTh *tuiHead="'reason'">Причина потери</th>
+				<th tuiTh *tuiHead="'actions'" [sorter]="null"></th>
+			</tr>
+		</thead>
+		<tbody tuiTbody [data]="data">
+			<tr *ngFor="let item of data | search : bookLoosingService.search; let i = index" tuiTr>
+				<td *tuiCell="'id'" tuiTd>{{ item.id !== undefined ? i + 1 : '' }}</td>
+				<td *tuiCell="'index'" tuiTd>
+					{{ item.id !== undefined ? item.id : '' }}
+				</td>
+				<td *tuiCell="'bookName'" tuiTd>
+					<tui-text-area
+						class="textarea"
+						[expandable]="true"
+						[(ngModel)]="item.book!.name"
+					></tui-text-area>
+				</td>
+				<td *tuiCell="'amount'" tuiTd>
+					<tui-input-number class="textarea" [(ngModel)]="item.amount"></tui-input-number>
+				</td>
 
-<table tuiTable class="table" [columns]="columns">
-  <thead class="">
-    <tr tuiThGroup>
-      <th tuiTh *tuiHead="'id'">№</th>
-      <th tuiTh *tuiHead="'index'">Идентификатор</th>
-      <th tuiTh *tuiHead="'bookName'">Название</th>
-      <th tuiTh *tuiHead="'amount'">Количество</th>
-      <th tuiTh *tuiHead="'date'">Дата добавления</th>
-      <th tuiTh *tuiHead="'reason'">Причина потери</th>
-      <th tuiTh *tuiHead="'actions'" [sorter]="null"></th>
-    </tr>
-  </thead>
-  <tbody tuiTbody [data]="data">
-    <tr
-      *ngFor="let item of data | search:bookLoosingService.search; let i = index"
-      tuiTr
-    >
-      <td *tuiCell="'id'" tuiTd>{{ item.id != undefined?i + 1:''}}</td>
-      <td *tuiCell="'index'" tuiTd>
-        {{ item.id != undefined ? item.id : "" }}
-      </td>
-      <td *tuiCell="'bookName'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [(ngModel)]="item.book!.name"
-        ></tui-text-area>
-      </td>
-      <td *tuiCell="'amount'" tuiTd>
-        <tui-input-number
-          class="textarea"
-          [(ngModel)]="item.amount"
-        ></tui-input-number>
-      </td>
+				<td *tuiCell="'date'" tuiTd>
+					<tui-input-date toNativeDate class="textarea" [(ngModel)]="item.date"></tui-input-date>
+				</td>
 
-      <td *tuiCell="'date'" tuiTd>
-        <tui-input-date
-          toNativeDate
-          class="textarea"
-          [(ngModel)]="item.date"
-        ></tui-input-date>
-      </td>
+				<td *tuiCell="'reason'" tuiTd>
+					<tui-text-area
+						class="textarea"
+						[expandable]="true"
+						[(ngModel)]="item.reason"
+					></tui-text-area>
+				</td>
 
-      <td *tuiCell="'reason'" tuiTd>
-        <tui-text-area
-          class="textarea"
-          [expandable]="true"
-          [(ngModel)]="item.reason"
-        ></tui-text-area>
-      </td>
-
-
-      <td *tuiCell="'actions'" tuiTd class="actions">
-        <button
-          tuiIconButton
-          icon="tuiIconSave"
-          appearance="flat"
-          shape="rounded"
-          size="s"
-          class="action-btn"
-        ></button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+				<td *tuiCell="'actions'" tuiTd class="actions">
+					<button
+						tuiIconButton
+						icon="tuiIconSave"
+						appearance="flat"
+						shape="rounded"
+						size="s"
+						class="action-btn"
+					></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </tui-scrollbar>
